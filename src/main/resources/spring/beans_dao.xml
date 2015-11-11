@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+
+<!-- 	<bean id="mySqlDataSource" class="org.apache.commons.dbcp.BasicDataSource"> -->
+<!-- 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"> -->
+	
+<!-- 		<property name="driverClassName" value="com.mysql.jdbc.Driver"/> -->
+		
+<!-- 		<property name="url" value="jdbc:mysql://localhost:3306/world"/> -->
+	
+<!-- 		<property name="username" value="root"/> -->
+
+<!-- 		<property name="password"> -->
+
+<!-- 			<value>mysql</value> -->
+			
+<!-- 		</property>	 -->
+		
+
+<!-- 	</bean> -->
+
+	<context:property-placeholder location="classpath:database/db.properties"/>
+<!-- 	context tag를 사용하려면  context를 선택하고   -->
+
+
+
+<!--  	DataSource -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+	
+		<property name="driverClassName" value="${className}"/>
+		
+		<property name="url" value="${url}"/>
+	
+		<property name="username" value="${user}"/>
+
+		<property name="password">
+
+			<value>${password}</value>
+			
+		</property>	
+	
+
+	</bean>
+	
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/> 
+		
+		<property name="mapperLocations">
+		
+			<list>
+				
+				<value>com/hybrid/mapper/MemberMapper.xml</value>
+			
+			</list>
+		
+		
+		</property>
+	
+	</bean>
+	
+	
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+	
+		<constructor-arg ref="sqlSessionFactory"/>
+		
+	</bean>
+	
+
+<!-- 	MemberMapper -->
+	<bean class="org.mybatis.spring.mapper.MapperFactoryBean">
+
+			<property name="mapperInterface" value="com.hybrid.mapper.MemberMapper"></property>
+			<property name="sqlSessionTemplate" ref="sqlSession"></property>
+	
+	</bean>
+	
+	
+<!-- 	CityMapper -->
+	<bean class="org.mybatis.spring.mapper.MapperFactoryBean">
+
+			<property name="mapperInterface" value="com.hybrid.mapper.CityMapper"></property>
+			<property name="sqlSessionTemplate" ref="sqlSession"></property>
+	
+	</bean>
+	
+	
+<!-- 	<bean id="oracleDataSource" class="org.apache.commons.dbcp.BasicDataSource"> -->
+	
+<!-- 		<property name="driverClassName" value="oracle.jdbc.OracleDriver"/> -->
+		
+<!-- 		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/> -->
+	
+<!-- 		<property name="username" value="scott"/> -->
+
+<!-- 		<property name="password"> -->
+
+<!-- 			<value>tiger</value> -->
+			
+<!-- 		</property>	 -->
+		
+
+<!-- 	</bean> -->
+
+
+	
+
+</beans>
+
+
+
+
+
+
+

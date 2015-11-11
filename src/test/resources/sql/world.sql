@@ -49,6 +49,10 @@ update member
 	where name = 'Hong'; 
 
 
+	
+	
+	
+-- member2의 CRUD 
 
 create table member2(
 	
@@ -61,12 +65,62 @@ create table member2(
 ); 
 
 
+-- read 
 select *from member2 ; 
 
+-- create 
 insert into member2
 (email, name, password)
 values
 ('xxx@yyyy', 'Hong', '1234')
+
+-- update 
+update member2 
+	set name = 'Hong_sun', 
+		password = '9876' 
+	where id = 1 ; 
+	
+-- delete 
+delete from member2
+	where id = 3 ; 
+
+
+--
+-- city 
+--	
+-- query 문은 한줄로 작성하지 않는다. 
+select * from city ;
+
+
+--
+--
+--
+select  id, 
+		name,
+		countrycode,
+		district, 
+		population
+		
+   from city ; 
+
+   
+--
+--
+-- 
+select  id, 
+		name,
+		countryCode,
+		district, 
+		population
+		
+   from city    
+  where countrycode = 'KOR'; 
+   
+
+
+
+
+
 
 
 
