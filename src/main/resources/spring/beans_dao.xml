@@ -53,7 +53,7 @@
 		
 			<list>
 				
-				<value>com/hybrid/mapper/MemberMapper.xml</value>
+				<value>com/hybrid/mapper/MemberMapper.xml</value> 
 			
 			</list>
 		
@@ -66,7 +66,9 @@
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
 	
 		<constructor-arg ref="sqlSessionFactory"/>
-		
+<!-- 	SqlSessionTemplate sqlSession = new SqlSessionTemplate(sqlSessionFactory.getObject()); -->
+<!-- 		에서 parameter 에 생성자가 없으므로 <constructor 를 만들어 줘야 한다.  -->
+	
 	</bean>
 	
 
@@ -87,6 +89,14 @@
 	
 	</bean>
 	
+<!-- 	countryMapper -->
+	<bean class="org.mybatis.spring.mapper.MapperFactoryBean">
+	
+			<property name="mapperInterface" value="com.hybrid.mapper.CountryMapper"></property>
+			<property name="sqlSessionTemplate" ref="sqlSession"></property>
+ 	
+	</bean>
+	
 	
 <!-- 	<bean id="oracleDataSource" class="org.apache.commons.dbcp.BasicDataSource"> -->
 	
@@ -105,8 +115,6 @@
 
 <!-- 	</bean> -->
 
-
-	
 
 </beans>
 

@@ -143,9 +143,9 @@ public class MemberMapperTest {							/*connection 관리*/
 		 * SqlSessionTemplete
 		 */
 		
-		SqlSessionTemplate sqlSession = new SqlSessionTemplate(sqlSessionFactory.getObject());
+		SqlSessionTemplate sqlSession = new SqlSessionTemplate(sqlSessionFactory.getObject()); // 
 		MemberMapper mapper = sqlSession.getMapper(MemberMapper.class);		
-		/*MemberMapper 인터페이스를 불러온다.mybatis에서만 인터페이스가 xml 형식을 불러 올수 있다.*/
+		/* MemberMapper 인터페이스를 불러온다.mybatis에서만 인터페이스가 xml 형식을 불러 올수 있다.*/
 		
 		List<Member> list = mapper.selectAll();
 		

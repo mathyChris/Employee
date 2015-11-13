@@ -30,21 +30,24 @@ import com.hybrid.exception.PasswordNotMatchingException;
 
 public class City {
 
-
-	
-	private int ID ;
+	private int Id ;
 	private String Name ;
 	private String CountryCode; 
 	private String District ; 
 	private Integer Population ;
 	
 	
-	public int getID() {
-		return ID;
+	public int getId() {
+		return Id;
 	}
-	public void setID(int iD) {
-		ID = iD;
+	public void setId(int id) {
+		Id = id;
 	}
+	
+	public void setPopulation(Integer population) {
+		Population = population;
+	}
+
 	public String getName() {
 		return Name;
 	}

@@ -12,6 +12,8 @@ select *from country;
 select count(*) from country; 
 
 
+-- DDL (drop, create etc...)
+
 drop table member; 
 
 create table member(
@@ -25,7 +27,7 @@ create table member(
 	
 ); 
 
-
+-- DML(C R U D에 해당)
 -- create 에 해당 
 insert into member
 (email, name, password, register_date)
@@ -88,13 +90,12 @@ delete from member2
 --
 -- city 
 --	
--- query 문은 한줄로 작성하지 않는다. 
 select * from city ;
 
 
 --
 --
---
+-- query 문은 한줄로 작성하지 않는다. 
 select  id, 
 		name,
 		countrycode,
@@ -115,7 +116,60 @@ select  id,
 		
    from city    
   where countrycode = 'KOR'; 
+  
+  
+  
+
+--  
+-- Country 
+--  
+select *from country ; 
+  
+  
+  select code, 
+  		 name, 
+  		 continent, 
+  		 region, 
+  		 surfaceArea, 
+  		 indepYear, 
+  		 population, 
+  		 lifeExpectancy, 
+  		 gnp, 
+  		 gnpOld, 
+  		 localName,
+  		 governmentForm, 
+  		 headOfState, 
+  		 capital, 
+  		 code2 
+  		 
+    from country
+   where code = 'KOR' ;
    
+   
+   select *from city;
+   select *from country where code="KOR" ; 
+     
+   
+--   join // 원래의 table로 바꾸어보자. 
+      		 
+   select city.*, country.*
+   
+      select ci.id, 
+      		 ci.name, 
+      		 co.name, 
+      		 co.headofstate
+   		from city ci inner join country co 
+   		
+   		  on ci.countrycode = co.code
+   	   where co.code = "KOR" ; 
+  		 
+  		 
+  		 
+  		 
+  		 
+  		 
+  		 
+  		 
 
 
 

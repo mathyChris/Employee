@@ -12,4 +12,6 @@ public interface MemberMapper {
 	void update(Member m); 
 	void delete(Member m); 
 	
+
+	
 }

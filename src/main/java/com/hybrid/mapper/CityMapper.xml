@@ -2,6 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.hybrid.mapper.CityMapper">
 	
+    
+<!--    R :  Read  -->
     <select id="selectAll" resultType="com.hybrid.model.City">
         
         select  id, 
@@ -28,4 +30,59 @@
         
     </select>
     
+    
+<!--     C : Create  -->
+    <insert id="insert" parameterType="com.hybrid.model.City" >
+        
+        insert into city 
+						(
+							
+							id, 
+							name, 
+							countrycode, 
+							district, 
+							population
+							
+						)
+						
+				   values
+						(
+							
+							#{id}, 
+							#{name}, 
+							#{countryCode}, 
+							#{district}, 
+							#{population} 
+
+						) 
+        
+    </insert>
+    
+<!--     U : Update  -->
+
+	<update id="update" parameterType="com.hybrid.model.City">
+	    
+	    
+	    
+	    
+	</update>
+	
+	
+<!-- 	D : delete  -->
+	<delete id="delete" parameterType="com.hybrid.model.City">
+	    
+	    
+	    
+	    
+	</delete>
+    
+    
+  
 </mapper>
+
+
+
+
+
+
+
