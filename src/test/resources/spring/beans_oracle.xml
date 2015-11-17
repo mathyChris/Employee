@@ -15,6 +15,7 @@
 		
 	</bean>
 	
+	
 	<bean id="oracleSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		
 		<property name="dataSource" ref="oracleDataSource"/>
@@ -37,13 +38,39 @@
 	
 	</bean>
 	
-	<bean id="oracleCityMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
 	
+	<bean id="oracleCityMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
 		
 		<property name="mapperInterface" value="com.hybrid.mapper.CityMapper"/>
 		<property name="sqlSessionTemplate" ref="oracleSqlSession"/>
 	
 	</bean>
+	
+	
+	
+	<bean id="oracleDeptMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+	
+		<property name="mapperInterface" value="com.hybrid.mapper.DeptMapper"/>
+		<property name="sqlSessionTemplate" ref="oracleSqlSession"/>
+	
+	</bean>
+	
+	
+	<bean id="oracleEmpMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+	
+		<property name="mapperInterface" value="com.hybrid.mapper.EmpMapper"/>
+		<property name="sqlSessionTemplate" ref="oracleSqlSession"/>
+	
+	</bean>
+	
 
 
 </beans>
+
+
+
+
+
+
+
+

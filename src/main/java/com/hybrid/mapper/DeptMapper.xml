@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hybrid.mapper.DeptMapper">
+    
+    
+    <sql id="deptFrom">
+        
+          select deptno, 
+	    	   dname, 
+	    	   loc 
+	      from dept
+       
+    </sql>
+    
+    
+    <sql id="deptFromWithEmp">
+        
+         select d.deptno as dept_deptno,
+	    		d.dname  as dept_dname,
+	    		d.loc    as dept_loc,
+	    		e.empno  as emp_empno,
+	    		e.ename  as emp_ename,
+	    		e.job    as emp_job,
+	    		e.mgr	 as emp_mgr,
+	    		e.hiredate as emp_hiredate,
+	    		e.sal    as emp_sal, 
+	    		e.comm   as emp_com,
+	    		e.deptno as emp_deptno
+			from dept d inner join emp e 
+			on d.deptno = e.deptno
+        
+    </sql>
+    
+    <sql id="deptFromWithEmp_outer">
+        
+         select d.deptno as dept_deptno,
+	    		d.dname  as dept_dname,
+	    		d.loc    as dept_loc,
+	    		e.empno  as emp_empno,
+	    		e.ename  as emp_ename,
+	    		e.job    as emp_job,
+	    		e.mgr	 as emp_mgr,
+	    		e.hiredate as emp_hiredate,
+	    		e.sal    as emp_sal, 
+	    		e.comm   as emp_com,
+	    		e.deptno as emp_deptno
+	    		
+			from dept d left outer join emp e 
+			on d.deptno = e.deptno
+        
+    </sql>
+
+    
+    
+	
+
+<!--     R : read  -->
+
+	<select id="selectAll" resultType="com.hybrid.model.Dept"> 
+<!-- 	resultType 은 DEptMapper.java에서 정의한 메서드 selectAll()의 return type     -->
+
+		<include refid="deptFrom"/>
+	    
+<!-- 	    SELECT DEPTNO,  -->
+<!-- 	    	   DNAME,  -->
+<!-- 	    	   LOC  -->
+<!-- 	      FROM DEPT -->
+	    
+	</select>
+	
+
+	<select id="selectByDeptno" resultType="com.hybrid.model.Dept">
+	    
+	    <include refid="deptFrom"/>
+	    where deptno = #{deptno}
+	    
+	</select>
+	
+	
+<!-- 	private int empno; -->
+<!-- 	private String ename;  -->
+<!-- 	private String job ;  -->
+<!-- 	private Integer mgr ;  -->
+<!-- 	private Date hiredate ;  -->
+<!-- 	private Float sal ;  -->
+<!-- 	private Float comm ;  -->
+<!-- 	private int deptno ; -->
+<!-- 	private Dept dept;  -->
+
+
+<!-- 	mapping 정보, 수동으로 처리, 자동처리는 resultType  -->
+	<resultMap id="deptResultMap" type="com.hybrid.model.Dept">
+	    
+	    <id property="deptno" column="dept_deptno"/>
+	    <result property="dname" column="dept_dname"/>
+	    <result property="loc" column="dept_loc"/>
+	    
+	    <collection property="emps" ofType="com.hybrid.model.Emp">
+<!-- 	    collection tag는 has-many관계이다. -->
+	    
+		    <id property="empno" column="emp_empno"/>
+		    <result property="ename" column="emp_ename"/>
+		    <result property="job" column="emp_job"/>
+		    <result property="mgr" column="emp_mgr"/>
+		    <result property="hiredate" column="emp_hiredate"/>
+		    <result property="sal" column="emp_sal"/>
+		    <result property="comm" column="emp_com"/>
+<!-- 		    <result property="deptno" column="emp_deptno"/> -->
+		    <association property="dept" resultMap="deptResultMap"/>
+		    
+		</collection>
+		
+<!-- 	    <association property=""></association> 은  has-one의 관계 -->
+	    
+	</resultMap>
+	
+	
+	
+	<select id="selectAllWithEmps" resultMap="deptResultMap">
+<!-- 	    resultType은 자동 mapping , resultMap은 resultMap 태그에 정의된 data를 이용하여 수동으로 mapping -->
+	    
+	    	
+<!-- 	     select d.deptno as dept_deptno, -->
+<!-- 	    		d.dname  as dept_dname, -->
+<!-- 	    		d.loc    as dept_loc, -->
+<!-- 	    		e.empno  as emp_empno, -->
+<!-- 	    		e.ename  as emp_ename, -->
+<!-- 	    		e.job    as emp_job, -->
+<!-- 	    		e.mgr	 as emp_mgr, -->
+<!-- 	    		e.hiredate as emp_hiredate, -->
+<!-- 	    		e.sal    as emp_sal,  -->
+<!-- 	    		e.comm   as emp_com, -->
+<!-- 	    		e.deptno as emp_deptno -->
+<!-- 			from dept d inner join emp e  -->
+<!-- 			on d.deptno = e.deptno -->
+<!-- 			order by d.deptno -->
+
+<!-- 			<include refid="deptFromWithEmp"/> -->
+			<include refid="deptFromWithEmp_outer"/>
+			order by d.deptno
+	    
+	</select>
+	
+	
+	
+	<select id="selectByDeptnoWithEmps" resultMap="deptResultMap">
+	    
+<!-- 	     select d.deptno as dept_deptno, -->
+<!-- 	    		d.dname  as dept_dname, -->
+<!-- 	    		d.loc    as dept_loc, -->
+<!-- 	    		e.empno  as emp_empno, -->
+<!-- 	    		e.ename  as emp_ename, -->
+<!-- 	    		e.job    as emp_job, -->
+<!-- 	    		e.mgr	 as emp_mgr, -->
+<!-- 	    		e.hiredate as emp_hiredate, -->
+<!-- 	    		e.sal    as emp_sal,  -->
+<!-- 	    		e.comm   as emp_com, -->
+<!-- 	    		e.deptno as emp_deptno -->
+<!-- 			from dept d inner join emp e  -->
+<!-- 			on d.deptno = e.deptno -->
+
+			<include refid="deptFromWithEmp"/>
+			
+			where d.deptno = #{deptno}
+			order by d.deptno
+	    
+	</select>
+    
+  
+</mapper>
+
+
+
+
+
+
+

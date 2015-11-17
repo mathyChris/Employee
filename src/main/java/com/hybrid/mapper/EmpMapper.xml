@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hybrid.mapper.EmpMapper">
+    
+    <select id="selectAll" resultType="com.hybrid.model.Emp">
+        
+        
+        select 
+        	    empno , 
+	    		ename , 
+	    		job , 
+	    		mgr	, 
+	    		hiredate , 
+	    		sal ,  
+	    		comm , 
+	    		deptno 
+        from emp 
+        
+        
+    </select>
+    
+    <select id="selectByDeptno" resultType="com.hybrid.model.Emp">
+        
+        select 
+        	    empno , 
+	    		ename , 
+	    		job , 
+	    		mgr	, 
+	    		hiredate , 
+	    		sal ,  
+	    		comm , 
+	    		deptno 
+        from emp 
+        where deptno = #{deptno}
+        
+    </select>
+    
+    
+    <resultMap id="empResultMapWithDept" type="com.hybrid.model.Emp">
+        
+        
+         <id property="empno" column="emp_empno"/>
+         <result property="ename" column="emp_ename"/>
+         <result property="job" column="emp_job"/>
+         <result property="mgr" column="emp_mgr"/>
+         <result property="hiredate" column="emp_hiredate"/>
+         <result property="sal" column="emp_sal"/>
+         <result property="comm" column="emp_comm"/>
+         
+         <association property="dept" javaType="com.hybrid.model.Dept" >
+             
+             <id property="deptno" column="dept_deptno"/>
+             <result property="dname" column="dept_dname"/>
+             <result property="loc" column="dept_loc"/>
+         
+         </association>
+        
+        
+        
+    </resultMap>
+    
+    
+    <select id="selectAllWithDept" resultMap="empResultMapWithDept">
+        
+        
+        select 
+        		e.empno 	as emp_empno, 
+        		e.ename		as emp_ename, 
+         		e.job 		as emp_job, 
+	    		e.mgr		as emp_mgr, 
+	    		e.hiredate  as emp_hiredate, 
+	    		e.sal 		as emp_sal,  
+	    		e.comm 		as emp_comm, 
+	    		d.deptno 	as dept_deptno,
+	    		d.dname		as dept_dname, 
+	    		d.loc 		as dept_loc
+           from emp e inner join dept d 
+           on e.deptno = d.deptno
+           order by d.deptno
+        
+        
+    </select>
+    
+            
+    <select id="selectByDeptnoWithDept" resultMap="empResultMapWithDept">
+        
+               select 
+        		e.empno 	as emp_empno, 
+        		e.ename		as emp_ename, 
+         		e.job 		as emp_job, 
+	    		e.mgr		as emp_mgr, 
+	    		e.hiredate  as emp_hiredate, 
+	    		e.sal 		as emp_sal,  
+	    		e.comm 		as emp_comm, 
+	    		d.deptno 	as dept_deptno,
+	    		d.dname		as dept_dname, 
+	    		d.loc 		as dept_loc
+        		from emp e inner join dept d 
+        		on e.deptno = d.deptno
+        		where deptno = #{deptno}
+        		order by d.deptno
+        
+        
+        
+    </select>
+    
+	
+
+    
+    
+  
+</mapper>
+
+
+
+
+
+
+

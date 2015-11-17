@@ -102,7 +102,7 @@ values
 
 
 -- 
--- inner join 
+-- inner join 의 사용 예 
 -- left outer join 
 -- right outer join 
 -- (full) outer join 
@@ -151,10 +151,91 @@ select d.deptno as dept_deptno,
   order by d.deptno  
 	
 
+ 
+  --
+  --
+  -- selectAll
+  
+	  select *
+	  	
+	  	from emp  
+  
+  
+  -- 
+  --
+  -- selectAllWithDept
+ 	   select 
+  			    e.empno  as emp_empno,
+	    		e.ename  as emp_ename,
+	    		e.job    as emp_job,
+	    		e.mgr	 as emp_mgr,
+	    		e.hiredate as emp_hiredate,
+	    		e.sal    as emp_sal, 
+	    		e.comm   as emp_com,
+	    		d.deptno as dept_deptno,
+	    		d.dname  as dept_dname, 
+	    		d.loc    as dept_loc 
+	    		
+	    	from emp e inner join dept d
+	    	on e.deptno = d.deptno
+	    	order by e.deptno
+	    	
+	    	
+--	    	
+--
+-- selectByEmpnoWithDept
+	    	
+	   select 
+  			    e.empno  as emp_empno,
+	    		e.ename  as emp_ename,
+	    		e.job    as emp_job,
+	    		e.mgr	 as emp_mgr,
+	    		e.hiredate as emp_hiredate,
+	    		e.sal    as emp_sal, 
+	    		e.comm   as emp_com,
+	    		d.deptno as dept_deptno,
+	    		d.dname  as dept_dname, 
+	    		d.loc    as dept_loc 
+	    		
+	    	from emp e inner join dept d
+	    	on e.deptno = d.deptno
+	    	where e.deptno = 10
 
+--
+--
+-- select 	
+	    	    	
+	    select 
+  			    e.empno  as emp_empno,
+	    		e.ename  as emp_ename,
+	    		e.job    as emp_job,
+	    		e.mgr	 as emp_mgr,
+	    		e.hiredate as emp_hiredate,
+	    		e.sal    as emp_sal, 
+	    		e.comm   as emp_com,
+	    		d.deptno as dept_deptno,
+	    		d.dname  as dept_dname, 
+	    		d.loc    as dept_loc 
+	    		
+	    	from emp e right outer join dept d
+	    	on e.deptno = d.deptno
+	    	order by e.deptno 	
+	    		
+	    		
+--
+        select 
+        	    empno , 
+	    		ename , 
+	    		job , 
+	    		mgr	, 
+	    		hiredate , 
+	    		sal ,  
+	    		comm , 
+	    		deptno 
+        from emp 
+        where deptno = 20
 
-
-
+   
 
 
 

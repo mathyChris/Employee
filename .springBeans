@@ -9,6 +9,7 @@
 	<configs>
 		<config>src/main/resources/spring/beans_dao.xml</config>
 		<config>src/test/resources/spring/beans_mysql.xml</config>
+		<config>src/test/java/com/hybrid/bean/beans.xml</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>

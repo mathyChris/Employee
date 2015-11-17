@@ -43,6 +43,14 @@
 		<property name="sqlSessionTemplate" ref="mysqlSqlSession"/>
 	
 	</bean>
+	
+	
+<!-- 	<bean id="mysqlEmpMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"> -->
+	
+<!-- 		<property name="mapperInterface" value="com.hybrid.mapper.DeptMapper"/> -->
+<!-- 		<property name="sqlSessionTemplate" ref="mysqlSqlSession"/> -->
+	
+<!-- 	</bean> -->
 
 
 </beans>

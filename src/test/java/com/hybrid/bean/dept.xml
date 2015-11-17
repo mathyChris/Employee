@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<employee>
+    <dept>
+        <deptno>10</deptno>
+        <dname>development</dname>
+        <loc>Seoul</loc>
+    </dept>
+</employee>
