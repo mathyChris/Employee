@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id = "dept1" class="com.hybrid.model.Dept">
+	
+		<property name="deptno" value="84"></property>
+		<property name="dname" value="ACCOUNT4"></property>
+		<property name="loc" value="Seoul"></property>
+		<property name="emps">
+		
+			<list>
+			
+				<bean id="emp1" class="com.hybrid.model.Emp">
+					<property name="empno" value="102"></property>
+					<property name="ename" value="Clant"></property>
+					<property name="dept" ref="dept1"></property>
+				</bean>
+				
+				<bean id="emp2" class="com.hybrid.model.Emp">
+					<property name="empno" value="103"></property>
+					<property name="ename" value="Hamingway"></property>
+					<property name="dept" ref="dept1"></property>
+				</bean>
+				
+			</list>
+			
+		</property>
+	</bean>
+	
+    
+    
+    
+</beans>

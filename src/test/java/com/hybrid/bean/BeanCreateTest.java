@@ -28,11 +28,11 @@ public class BeanCreateTest {
 	public static void main(String[] args) throws InterruptedException, ParserConfigurationException, SAXException, IOException {
 
 		test1(); // spring에서 객체를 생성하는 첫번째 방법 -  new 를 이용한 방법 
-		test2(); // spring에서 객체를 생성하는 두번째 방법 - 
+		test2(); // spring에서 객체를 생성하는 두번째 방법 -  factory 를 xml 에 설정하여 이용하는 방법 
 		
 		Document document = ctx.getBean(Document.class) ; 
 		Element root = document.getDocumentElement(); 
-		log.info("2nd = " + root.getNodeName()) ; 
+		log.info("2nd root = " + root.getNodeName()) ; 
 		
 	
 	}
@@ -53,7 +53,7 @@ public class BeanCreateTest {
 		
 		Document document = builder.parse(resource.getInputStream()) ;
 		Element root = document.getDocumentElement(); // root element 
-		log.info(root.getNodeName());
+		log.info("1st root = " + root.getNodeName());
 
 		
 	}

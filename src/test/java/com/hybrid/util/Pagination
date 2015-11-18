@@ -1,0 +1,49 @@
+
+
+
+ 1. totalPage = totalItem / itemPerPage 
+	if(totalItem % itemPerPage > 0 ) 
+		totalPage++ 
+ 
+ 2. firstItem = (pageNo-1)*itemsPerPage + 1 
+ 
+
+ 3. lastItem = pageNo*itemsPerPage
+	 			 = firstItem + ( itemsPerPage - 1 )
+ 		if(lastItem > totalItem)
+			lastItem = totalItem  		
+			
+ 	////////////////////////////////////////////////////////////////////////////////	
+ 		if(pageNo == totalPage)
+ 			lastItem = firstItem + (totalItem % itemPerPage) * itemPerPage (or 10)
+ 		
+ 		
+ 		
+ 
+ 4. firstPage (What is the firstItem per each (page)Group? ) 
+ 	
+ 	
+ 	first = (pageNo - 1 ) / pagesPerGroup * pagesPerGroup + 1
+ 	
+ 	
+ 	////////////////////////////////////////////////////////////////////////////////
+ 	totalGroup = totalPage / pagesPerGroup + 1 
+ 	groupNo 
+ 	
+ 	firstPage = (groupNo ) * pagesPerGroup + 1
+ 	
+ 	
+ 	
+ 
+ 5. lastPage = (first -1 ) + pagesPerGroup	
+ 	if(pageNo > totalPage) 
+		lastPage = totalPage 
+ 
+
+		
+		
+		
+		
+		
+		
+		

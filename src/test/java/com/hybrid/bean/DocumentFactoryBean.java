@@ -8,7 +8,7 @@ import org.springframework.core.io.ClassPathResource;
 import org.w3c.dom.Document;
 
 public class DocumentFactoryBean implements FactoryBean<Document>{ // Document type- w3c 
-//	FactoryBean<Document>를 만들면 기본 3개의 method 가 생성된다. 
+//	FactoryBean<Document>를 implements 하면 아래 3개의 기본 method들이 생성된다. 
 
 	DocumentBuilderFactory factory ; 
 	
@@ -23,7 +23,7 @@ public class DocumentFactoryBean implements FactoryBean<Document>{ // Document t
 	}
 	
 	
-	// 생성되는 기본 파일은 아니다. 
+	// 자동 생성되는 기본 method가 아니다. 아래와 같ㅇ ㅣ직접 만들어 준다.  
 	public void setPath(String path){
 		
 		resource = new ClassPathResource(path)  ;

@@ -233,13 +233,28 @@ select d.deptno as dept_deptno,
 	    		comm , 
 	    		deptno 
         from emp 
-        where deptno = 20
+        where deptno = 80
 
    
+        
+        select * 
+        		from dept
+        		
+       	select * 
+       	 		from dept d left outer join emp e
+       	 		on d.deptno = e.deptno 
+       	 		where d.deptno = 80 
 
-
-
+       	 		
+       	 		
+		select * 
+				from emp 
 	
+				
+				
+		select * 
+       	 		from dept d left outer join emp e
+       	 		on d.deptno = e.deptno 
 
 
 	

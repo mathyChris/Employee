@@ -88,7 +88,7 @@
 <!-- 	private Dept dept;  -->
 
 
-<!-- 	mapping 정보, 수동으로 처리, 자동처리는 resultType  -->
+<!-- 	resultMap 은 mapping 정보를 수동으로 처리, 자동처리는 resultType  -->
 	<resultMap id="deptResultMap" type="com.hybrid.model.Dept">
 	    
 	    <id property="deptno" column="dept_deptno"/>
@@ -98,7 +98,7 @@
 	    <collection property="emps" ofType="com.hybrid.model.Emp">
 <!-- 	    collection tag는 has-many관계이다. -->
 	    
-		    <id property="empno" column="emp_empno"/>
+		    <id property="empno" column="emp_empno"/> <!-- primary key는 di로 받는다.  -->
 		    <result property="ename" column="emp_ename"/>
 		    <result property="job" column="emp_job"/>
 		    <result property="mgr" column="emp_mgr"/>
@@ -106,7 +106,7 @@
 		    <result property="sal" column="emp_sal"/>
 		    <result property="comm" column="emp_com"/>
 <!-- 		    <result property="deptno" column="emp_deptno"/> -->
-		    <association property="dept" resultMap="deptResultMap"/>
+		    <association property="dept" resultMap="deptResultMap"/> <!-- has-one 관계는 <association tag로 받는다.  -->
 		    
 		</collection>
 		
@@ -165,6 +165,25 @@
 			order by d.deptno
 	    
 	</select>
+	
+	
+	<insert id="insert" parameterType="com.hybrid.model.Dept">
+	    
+	    insert into dept
+	    				(
+	    					deptno,
+	    					dname,
+	    					loc
+	    				)
+	    			values
+	    				(
+	    					#{deptno},
+	    					#{dname},
+	    					#{loc}
+	    					
+	    				)
+	    
+	</insert>
     
   
 </mapper>

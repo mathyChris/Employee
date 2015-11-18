@@ -84,7 +84,7 @@
             
     <select id="selectByDeptnoWithDept" resultMap="empResultMapWithDept">
         
-               select 
+          select 
         		e.empno 	as emp_empno, 
         		e.ename		as emp_ename, 
          		e.job 		as emp_job, 
@@ -96,19 +96,78 @@
 	    		d.dname		as dept_dname, 
 	    		d.loc 		as dept_loc
         		from emp e inner join dept d 
-        		on e.deptno = d.deptno
-        		where deptno = #{deptno}
-        		order by d.deptno
+        		
+             on e.deptno = d.deptno
+          where deptno = #{deptno}
+      	  order by d.deptno
         
         
         
     </select>
     
+    
+<!--     instructor -->
+
+
 	
+	<select id="selectByEmpno" resultType="com.hybrid.model.Emp">
+	    
+	    select * 
+	    	from emp 
+	    	where empno = #{empno}
+	    
+	    
+	</select>
 
     
+    <select id="selectByEmpnoWithDept" resultMap="empResultMapWithDept">
+        
+          select 
+        		e.empno 	as emp_empno, 
+        		e.ename		as emp_ename, 
+         		e.job 		as emp_job, 
+	    		e.mgr		as emp_mgr, 
+	    		e.hiredate  as emp_hiredate, 
+	    		e.sal 		as emp_sal,  
+	    		e.comm 		as emp_comm, 
+	    		d.deptno 	as dept_deptno,
+	    		d.dname		as dept_dname, 
+	    		d.loc 		as dept_loc
+	    		
+           from emp e inner join dept d 
+             on e.deptno = d.deptno
+          where empno = #{empno}
+        
+        
+    </select>
     
-  
+    
+    <insert id="insert" parameterType="com.hybrid.model.Emp">
+        insert into emp
+        				(
+        				empno, 
+        				ename,
+        				job,
+        				mgr,
+        				hiredate,
+        				sal,
+        				comm,
+        				deptno
+        				)
+        			values 
+        				(
+        				#{empno},
+        				#{ename, jdbcType=VARCHAR},  <!-- jdbcType= 을 추가하면 null값에도 대응-->
+        				#{job, jdbcType=VARCHAR},
+        				#{mgr, jdbcType=NUMERIC},
+        				#{hiredate, jdbcType=TIMESTAMP},
+        				#{sal , jdbcType=NUMERIC},
+        				#{comm, jdbcType=NUMERIC},
+        				#{dept.deptno,  jdbcType=NUMERIC}
+        				)
+        
+    </insert>
+    
 </mapper>
 
 

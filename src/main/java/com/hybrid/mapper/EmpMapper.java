@@ -11,10 +11,18 @@ public interface EmpMapper {
 	List<Emp> selectAll(); 
 	List<Emp> selectAllWithDept();
 	
-	List<Emp> selectByDeptno(int deptno); 
 	
-	Emp selectByDeptnoWithDept(int deptno); 
+	////////////////////////////////////// myself code 
+//	List<Emp> selectByDeptno(int deptno); 
+//	Emp selectByDeptnoWithDept(int deptno); 
+	
+	
+	
+	////////////////////////////////////// instructor code 
+	Emp selectByEmpno();
+	Emp selectByEmpnoWithDept();
+	
+		
+	int insert(Emp emp); 
 
-	
-	
 }

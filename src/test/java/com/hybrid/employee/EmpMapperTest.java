@@ -68,31 +68,31 @@ public class EmpMapperTest {
 //		log.info("DeptnoInfo : " + msg); 
 		
 		
-		List<Emp> list2 = empMapper.selectByDeptno(20); 
-		
-		
-		list2.forEach(new Consumer<Emp>() {
-
-			@Override
-			public void accept(Emp emp) {
-
-				String string = emp.getEmpno() + 
-						 "\t" + emp.getEname() + 
-						 "\t" + emp.getJob() + 
-						 "\t" + emp.getMgr() + 
-						 "\t" + emp.getSal() + 
-						 "\t" + emp.getHiredate() + 
-						 "\t" + emp.getComm() +
-						 "\t" + emp.getDeptno() ;
-				
-				log.info("\n");
-				
-				log.info("Emp Info. = " + string); 
-				
-				
-				
-			}
-		});
+//		List<Emp> list2 = empMapper.selectByDeptno(20); 
+//		
+//		
+//		list2.forEach(new Consumer<Emp>() {
+//
+//			@Override
+//			public void accept(Emp emp) {
+//
+//				String string = emp.getEmpno() + 
+//						 "\t" + emp.getEname() + 
+//						 "\t" + emp.getJob() + 
+//						 "\t" + emp.getMgr() + 
+//						 "\t" + emp.getSal() + 
+//						 "\t" + emp.getHiredate() + 
+//						 "\t" + emp.getComm() +
+//						 "\t" + emp.getDeptno() ;
+//				
+//				log.info("\n");
+//				
+//				log.info("Emp Info. = " + string); 
+//				
+//				
+//				
+//			}
+//		});
 		
 		
 

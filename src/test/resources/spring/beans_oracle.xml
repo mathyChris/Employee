@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd">
 
 
 <!-- 	oracle DataSource	 -->
@@ -63,8 +65,103 @@
 	
 	</bean>
 	
+	
+<!-- 	deptDao 생성하면서 여기에 등록 -->
+	<bean id="oracleDeptDao" class="com.hybrid.dao.DeptDao">
+	
+		<property name="deptMapper"  ref="oracleDeptMapper"/>
+	
+	</bean>
+	
+	
+<!-- 	EmpDao 생성하면서 여기에 등록 -->
+	<bean id ="oracleEmpDao" class="com.hybrid.dao.EmpDao">
+	
+		<property name="empMapper" ref="oracleEmpMapper"></property>
+	
+	</bean>
+	
+	
+	
+	
+<!-- 	1. bean 으로  모델 객체 를 설정하는 방법-->
+<!-- 	<bean id="emp1" class="com.hybrid.model.Emp"> -->
+<!-- 		<property name="empno" value="100"></property> -->
+<!-- 		<property name="ename" value="Clair"></property> -->
+<!-- 		<property name="dept" ref="dept1"></property> -->
+<!-- 	</bean> -->
+	
+<!-- 	<bean id="emp2" class="com.hybrid.model.Emp"> -->
+<!-- 		<property name="empno" value="101"></property> -->
+<!-- 		<property name="ename" value="Mark"></property> -->
+<!-- 		<property name="dept" ref="dept1"></property> -->
+<!-- 	</bean> -->
+	
+<!-- 	<bean id = "dept1" class="com.hybrid.model.Dept"> -->
+	
+<!-- 		<property name="deptno" value="80"></property> -->
+<!-- 		<property name="dname" value="ACCOUNT2"></property> -->
+<!-- 		<property name="loc" value="Seoul"></property> -->
+<!-- 		<property name="emps"> -->
+<!-- 			<list> -->
+			
+<!-- 				<ref bean="emp1"></ref> -->
+<!-- 				<ref bean="emp2"></ref> -->
+			
+<!-- 			</list> -->
+			
+<!-- 		</property> -->
+<!-- 	</bean> -->	
+	
+	
+	
+	
+<!-- 	2. bean으로 모델 객체를 입력하는 방법  -->
 
-
+	
+<!-- 	<bean id = "dept1" class="com.hybrid.model.Dept"> -->
+	
+<!-- 		<property name="deptno" value="84"></property> -->
+<!-- 		<property name="dname" value="ACCOUNT4"></property> -->
+<!-- 		<property name="loc" value="Seoul"></property> -->
+<!-- 		<property name="emps"> -->
+		
+<!-- 			<list> -->
+			
+<!-- 				<bean id="emp1" class="com.hybrid.model.Emp"> -->
+<!-- 					<property name="empno" value="102"></property> -->
+<!-- 					<property name="ename" value="Clant"></property> -->
+<!-- 					<property name="dept" ref="dept1"></property> -->
+<!-- 				</bean> -->
+				
+<!-- 				<bean id="emp2" class="com.hybrid.model.Emp"> -->
+<!-- 					<property name="empno" value="103"></property> -->
+<!-- 					<property name="ename" value="Hamingway"></property> -->
+<!-- 					<property name="dept" ref="dept1"></property> -->
+<!-- 				</bean> -->
+				
+<!-- 			</list> -->
+			
+<!-- 		</property> -->
+<!-- 	</bean> -->
+	
+	
+	
+	
+	<aop:aspectj-autoproxy/> <!-- auto_proxy 는 자동 삽입   -->
+	
+	<bean class="com.hybrid.aspect.LogDaoAspect"/>
+	<bean class="com.hybrid.aspect.TransactionAspect" />
+	
+	<bean class="com.hybrid.service.DeptRegisterService">
+	
+		<property name="deptDao" ref="oracleDeptDao"></property>
+		<property name="empDao" ref="oracleEmpDao"></property> <!-- service 파일에서 생성한 set 설정을 등록하기 위해-->
+		<property name="dataSource" ref="oracleDataSource"></property> 
+	
+	</bean>
+	
+	
 </beans>
 
 

@@ -16,15 +16,16 @@
 	</bean>
 	
 	<bean class="com.hybrid.model.Member" scope="prototype">
-<!-- 	prototype 을 선택할 경우 singleton 이 아닌, 다른 객체들도 생성할 수 있게 된다.  -->
+<!-- 	prototype 을 선택할 경우 singleton 이 아닌, 다른 객체들도 여러번 생성할 수 있게 된다.  -->
 	
 	</bean>
 	
 	
 	
-<!-- 	Factory method 생성, 1~2% 로 사용됨 -->
+<!-- 	Factory method로 생성, 1~2% 로 사용됨 -->
 	<bean id = "documentBuilderFactory" class="javax.xml.parsers.DocumentBuilderFactory" factory-method="newInstance">
-<!-- 	javax.xml.parsers.DocumentBuilderFactory = DocumentBuilderFactory에서 "ctl+space"-->
+<!-- DocumentBuilderFactory f = DocumentBuilderFactory.newInstance() 를 구현-->
+<!-- 	javax.xml.parsers.DocumentBuilderFactory = DocumentBuilderFactory에서 "ctl+space"로 구할 수 있다.-->
 <!-- 		factory-method에서 instance 생성하여 Main에서 newInstance를 생성할 필요가 없다.  -->
 	
 	</bean>
@@ -32,7 +33,7 @@
 	
 <!-- 	FactoryBean 인터페이스를 사용, 약 3% 정도 사용됨  -->
 	<bean class="com.hybrid.bean.DocumentFactoryBean">
-<!-- 	위의 factory 를 생성하는 과정을 main에서 숨기고 설정 클래스인 DocumentFactoryBean 으로 넘기기 위해서이다.  -->
+<!-- 	위의 factory 를 생성하는 과정을 main에서 숨기고 설정 클래스인 DocumentFactoryBean.java 로 넘기기 위해서 사용.  -->
 	
 		<constructor-arg ref="documentBuilderFactory"></constructor-arg>
 		<property name="path" value="com/hybrid/bean/dept.xml"/>
