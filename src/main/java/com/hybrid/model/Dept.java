@@ -3,6 +3,8 @@ package com.hybrid.model;
 import java.util.Date;
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 import com.hybrid.exception.PasswordNotMatchingException;
 
 

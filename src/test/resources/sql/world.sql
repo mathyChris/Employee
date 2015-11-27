@@ -164,12 +164,29 @@ select *from country ;
    	   where co.code = "KOR" ; 
   		 
   		 
+ --
+ --
+ -- 		
+ select * 
+ 	from city   	   
+   	order by countrycode asc, name asc
+ 	limit 40, 10 -- 21번째부터 5개를 가져오겠다는 뜻  		
+--  start , length 
+--  from 0 (index가 0부터 시작)
+ 
   		 
-  		 
-  		 
-  		 
-  		 
-  		 
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

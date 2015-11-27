@@ -1,0 +1,27 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+ <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+ <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+ 
+
+<c:url var="bootstrap" value="/bootstrap/dist/css/bootstrap.css"/>  <!-- server 에서 동작  -->
+<c:url var="angular" value="/angular/angular.js"/>
+<c:url var="jquery" value="/jquery/dist/jquery.js"/>
+
+<link rel="stylesheet" href="${bootstrap}"/>
+<script type="text/javascript" src="${angular}"></script>
+<script type="text/javascript" src="${jquery}"></script>
+
+
+
+
+
+
+
+
+
+
+
+

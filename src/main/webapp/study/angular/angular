@@ -1,0 +1,13 @@
+
+
+	var app = angular.module(employeeApp, []); 
+	app.controller("examController" , function(){
+	
+	
+	
+	}); 
+	
+	
+	bootstrap ==> define something by class 
+	
+	

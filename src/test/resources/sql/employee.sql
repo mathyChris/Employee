@@ -19,6 +19,56 @@ create table member(
 ); 
 
 
+
+select rownum, c.*
+	from city c
+--	where rownum >= 11 
+--	and rownum <= 20
+	order by countrycode asc, name asc 
+	
+-- 	
+-- 
+--	
+	select out.*
+	from (
+			select rownum rn, c.* 
+			  from city c
+			  order by countrycode asc , name asc 
+			
+		 ) out
+--	where out.rn >= 11 and out.rn <= 20
+	where rn >= 11 and rn <= 20
+	order by rn
+	
+	
+	select out.*
+	from (
+			select rownum rn, c.* 
+			  from city c
+			  order by name asc 
+			
+		 ) out
+	where rn >= 11 and rn <= 20
+	order by rn	
+	
+--	
+-- rownum 을 이용한 정렬 및 부분 추출 	
+--
+  select out.*
+	from (
+			select rownum rn, in_.* 
+			  from (
+			  		select * 
+			  		from city 
+			  		order by countrycode asc, name asc) in_
+		 ) out
+	where out.rn >= 11 and out.rn <= 20
+	order by rn	
+	
+-----------------------------------------------------------------	
+	
+
+
 select *from member; 
 
 
@@ -33,7 +83,7 @@ create sequence member_id_seq
 insert into member
 (id, email, name, password, register_date)
 values
-(member_id_seq.nextval, 'xxxx@xxxx', 'Hong', '1234', '2015/11/09')
+(member_id_seq.nextval, xxxx@xxxx, Hong, 1234, 2015/11/09)
 
 
 
@@ -50,10 +100,10 @@ delete from member
 	
 -- update 에 해당 
 update member 
-	set name = 'Hong_sun',
-		password = '9876'
+	set name = Hong_sun,
+		password = 9876
 		
-	where name = 'Hong'; 
+	where name = Hong; 
 	
 
 -- 	
@@ -93,10 +143,10 @@ insert into city
 values
 (
 	city_id_seq.nextval, 
-	'Seoul',
-	'KOR',
-	'GyungSang',
-	'10000000'
+	Seoul,
+	KOR,
+	GyungSang,
+	10000000
 
 ) 
 
@@ -239,6 +289,9 @@ select d.deptno as dept_deptno,
         
         select * 
         		from dept
+        	order by deptno 
+        	
+        	
         		
        	select * 
        	 		from dept d left outer join emp e
@@ -256,6 +309,60 @@ select d.deptno as dept_deptno,
        	 		from dept d left outer join emp e
        	 		on d.deptno = e.deptno 
 
+----------------------------------------------------------20151123
 
+drop table country        	 		
+       	 		
+create table country (
+  code 				char(3), 
+  name 				char(52), 
+  continent         char(50),
+  region 			char(26)
+  surfacearea 		numeric(10,2), 
+  indepyear 		numeric(6) ,
+  population 		numeric(11) ,
+  lifeexpectancy 	numeric(3,1) ,
+  gnp 				numeric(10,2) ,
+  gnpold 			numeric(10,2) ,
+  localname 		char(45) ,
+  governmentform 	char(45) ,
+  headofstate 		char(60) ,
+  capital 			numeric(11) ,
+  code2 			char(2)  ,
+  
+  constraint pk_country_code primary key (code)
+)   	 		
+       	 		
+
+--  name 				char(52) not null default '',
+--  continent 		enum(asia,europe,north america,africa,oceania,antarctica,south america) not null default asia '',
+--  region 			char(26) not null default '',
+--  surfacearea 		numeric(10,2) not null default 0.00,
+--  indepyear 		numeric(6) default null '',
+--  population 		numeric(11) not null default 0,
+--  lifeexpectancy 	numeric(3,1) default null '',
+--  gnp 				numeric(10,2) default null '',
+--  gnpold 			numeric(10,2) default null '',
+--  localname 		char(45) not null default '',
+--  governmentform 	char(45) not null default '',
+--  headofstate 		char(60) default null '',
+--  capital 			numeric(11) default null '',
+--  code2 			char(2) not null default '',
+       	 		
+       	 		
+       	 		
+       	 		
+       	 		
+       	 		
+       	 		
+       	 		
+       	 		
+       	 		
+       	 		
+       	 		
+       	 		
+       	 		
+       	 		
+       	 		
 	
 	

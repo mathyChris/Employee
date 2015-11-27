@@ -44,10 +44,6 @@ public class City {
 		Id = id;
 	}
 	
-	public void setPopulation(Integer population) {
-		Population = population;
-	}
-
 	public String getName() {
 		return Name;
 	}
@@ -66,15 +62,12 @@ public class City {
 	public void setDistrict(String district) {
 		District = district;
 	}
-	public int getPopulation() {
+	public Integer getPopulation() {
 		return Population;
 	}
-	public void setPopulation(int population) {
+	public void setPopulation(Integer population) {
 		Population = population;
 	} 
-	
-	
-	
 	
 }
 

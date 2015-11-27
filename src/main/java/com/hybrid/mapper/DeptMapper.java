@@ -17,4 +17,11 @@ public interface DeptMapper {
 	
 	int insert(Dept dept); 
 	
+	
+	// delete  부분을 새롭게 생성 
+	int delete(Dept dept);
+	int deleteGreaterThan(int deptno); 
+	
+	List<Dept> selectGreaterThan(int deptno); 
+	
 }

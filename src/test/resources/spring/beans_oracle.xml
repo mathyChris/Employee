@@ -2,8 +2,10 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd">
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
 
 
 <!-- 	oracle DataSource	 -->
@@ -11,16 +13,46 @@
 	
 		<property name="driverClassName" value="oracle.jdbc.OracleDriver"/>
 		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
-<!-- 		<property name="url" value="jdbc:oracle:thin:@192.168.10.31:1521:xe"/> -->
+<!-- 		<property name="url" value="jdbc:oracle:thin:@192.168.10.31:1521:xe"/> --> <!-- 강사님 IP -->
 		<property name="username" value="spring"/>
 		<property name="password" value="tiger"/>
 		
 	</bean>
+
+
+<!-- 	<tx namesapce 만 있으면  -->
+<!-- 	<tx:annotation-driven transaction-manager="transactionManager"/> -->
+	<tx:annotation-driven/>
+<!-- 	TransactionAspect.java에서 DataSourceTransactonManager 객체 설정  -->
+	<bean id ="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	
+		<constructor-arg ref="oracleDataSource"/>
+	
+	</bean>
+	
+	
 	
 	
 	<bean id="oracleSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		
 		<property name="dataSource" ref="oracleDataSource"/>
+		
+		<property name="databaseIdProvider">
+		
+			<bean class="org.apache.ibatis.mapping.VendorDatabaseIdProvider">
+				
+				<property name="properties">
+					
+					<props>
+						<prop key="MySQL">mysql</prop>
+						<prop key="Oracle">oracle</prop>
+					</props>
+				
+				</property>
+			
+			</bean>
+		
+		</property>
 		
 		<property name="mapperLocations">
 		
@@ -151,10 +183,25 @@
 	<aop:aspectj-autoproxy/> <!-- auto_proxy 는 자동 삽입   -->
 	
 	<bean class="com.hybrid.aspect.LogDaoAspect"/>
-	<bean class="com.hybrid.aspect.TransactionAspect" />
+	
+<!-- 	<bean class="com.hybrid.aspect.TransactionAspect" > -->
+	
+<!-- 		<property name="dataSource" ref="oracleDataSource" /> -->
+	
+<!-- 	</bean> -->
 	
 	<bean class="com.hybrid.service.DeptRegisterService">
 	
+		<property name="deptDao" ref="oracleDeptDao"></property>
+		<property name="empDao" ref="oracleEmpDao"></property> <!-- service 파일에서 생성한 set 설정을 등록하기 위해-->
+		<property name="dataSource" ref="oracleDataSource"></property> 
+	
+	</bean>
+	
+	
+	<bean class="com.hybrid.service.DeptUnRegisterService">
+	
+<!-- 		<property name="deptDao" ref="oracleDeptDao"></property> -->
 		<property name="deptDao" ref="oracleDeptDao"></property>
 		<property name="empDao" ref="oracleEmpDao"></property> <!-- service 파일에서 생성한 set 설정을 등록하기 위해-->
 		<property name="dataSource" ref="oracleDataSource"></property> 

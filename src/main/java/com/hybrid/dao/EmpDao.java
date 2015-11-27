@@ -38,6 +38,15 @@ public class EmpDao {
 	////////////////////////////////////////////////
 	
 	
+	// DeptUnregisterService.java 에서 직원 검색 method 추가 
+	public List<Emp> selectByDeptno(int deptno){
+		
+		return empMapper.selectByDeptno(deptno); 
+		
+	}
+	
+	
+	
 	////////////////////////////////////////////////instructor
 	public Emp selectByEmpnoWithDept(){
 		
@@ -52,7 +61,7 @@ public class EmpDao {
 	
 	}
 	
-	
+
 //	public List<Emp> selectByDeptno(int deptno){
 //	
 //	
@@ -65,6 +74,13 @@ public class EmpDao {
 //	return empMapper.selectByDeptnoWithDept(deptno) ;
 //	
 //}
+	
+	
+	public int delete(Emp emp) {
+		
+		return empMapper.delete(emp) ; 
+		
+	}
 	
 	
 	

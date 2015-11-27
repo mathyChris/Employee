@@ -4,6 +4,12 @@
 	
     
 <!--    R :  Read  -->
+	<select id="selectCount" resultType="int">
+	    
+	    select count(*) from city 
+	    
+	</select>
+
     <select id="selectAll" resultType="com.hybrid.model.City">
         
         select  id, 
@@ -13,6 +19,47 @@
 				population
 				
 		   from city
+        
+    </select>
+    
+    
+<!--     mySQL -->
+    <select id="selectPage" 
+        	parameterType="com.hybrid.util.Pagination" 
+        	resultType="com.hybrid.model.City"
+        	databaseId="mysql"> <!-- 이 부분을 추가하여 DB 구분  -->
+        
+        select  id, 
+				name,
+				countryCode,
+				district, 
+				population
+				
+		   from city
+	   order by countrycode asc, name asc
+ 	      limit #{start}, #{length}
+        
+    </select>
+    
+<!--     Oracle -->
+    <select id="selectPage" 
+            parameterType="com.hybrid.util.Pagination" 
+            resultType="com.hybrid.model.City"
+            databaseId="oracle"> <!-- 이 부분을 추가하여 DB 구분  -->
+        
+  select out.*
+	from (
+			select rownum rn, in_.* 
+			  from (
+			  		select * 
+			  		from city 
+			  		order by countrycode asc, name asc) in_
+		 ) out
+<!-- 	where out.rn >= #{firstItem} -->
+<!-- 	  and out.rn <= #{lastItem} -->
+		where out.rn &gt;= #{firstItem}
+		  and out.rn &lt;=#{lastItem}
+	order by rn	
         
     </select>
     
@@ -69,9 +116,9 @@
 	
 	
 <!-- 	D : delete  -->
-	<delete id="delete" parameterType="com.hybrid.model.City">
+	<delete id="deleteAll" parameterType="com.hybrid.model.City">
 	    
-	    
+	    delete from city
 	    
 	    
 	</delete>

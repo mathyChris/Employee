@@ -7,6 +7,7 @@ import javax.sql.DataSource;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import com.hybrid.dao.DeptDao;
@@ -46,20 +47,27 @@ public class DeptRegisterService {
 /////////////////////////////////////////////////////////////////
 	
 	
+	
+	@Transactional //이 표시가 없으면 transaction이 되지 않는다. beans_oracle 에서 
 	public void regist(Dept dept){
+		
+//		하단 부분은 transaction 처리부임. --> 이 부분은 향후 AOP 로 빼낼 계획이다. --> TransactionAspect.java
 		
 //		throw new RuntimeException(); // RuntimeException 이 발생하도록 강제적으로 coding for test 	
 	
 // 		In order to proceed the below, need to make the same code lines to the each.
 //		So we have to get this part move into the AOP code. 
+		
+/*		
 		DataSourceTransactionManager transactionManager = null ; 
 		transactionManager = new DataSourceTransactionManager() ; 
 		transactionManager.setDataSource(dataSource); 
 		
 		TransactionDefinition td  = new DefaultTransactionDefinition(); // default setting is initiative 
 		TransactionStatus ts = transactionManager.getTransaction(td) ;
-	
-		
+	*/
+		////////////////////////////////////////////////////////////////////////////////
+/*		
 		try{
 			
 			deptDao.insert(dept) ; // 부서 정보를 입력하는 기능 
@@ -74,20 +82,27 @@ public class DeptRegisterService {
 			}
   			////////////////////////////////////////
 			
-			transactionManager.commit(ts); // 성공 시 commit 
+//			transactionManager.commit(ts); // 성공 시 commit 
 		
 		}catch(RuntimeException e){
 			
 			System.out.print(e.getMessage()); 
 			
-			transactionManager.rollback(ts); // Failure occurs then rollback 
+//			transactionManager.rollback(ts); // Failure occurs then rollback 
 			
 		}
+		*/
 		
 		
+		deptDao.insert(dept) ; 
 		
+		List<Emp> emps = dept.getEmps() ;
 		
-		
+		if(emps!= null) 
+		for(Emp e : emps) {
+			
+			empDao.insert(e); 
+		}
 		
 	}
 	

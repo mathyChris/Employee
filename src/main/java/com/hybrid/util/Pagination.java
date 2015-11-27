@@ -72,7 +72,7 @@ public class Pagination {
 
 		firstItem = (pageNo - 1 ) * itemsPerPage + 1 ; 	
 		
-		lastItem = firstItem + itemsPerPage - 1 ; 
+		lastItem = firstItem + itemsPerPage -1 ;
 			if(lastItem > totalItem){
 				
 				lastItem = totalItem ; 
@@ -160,6 +160,17 @@ public class Pagination {
 		
 	}
 	
+//	cityMapper.xml안에 selectPage tag의 매개변수, start, length를 얻기 위해 사용 
+	
+	public int getStart(){
+		
+		return firstItem - 1  ;
+	}
+	
+	public int getLength(){
+	
+		return lastItem  - firstItem + 1 ; 
+	}
 	
 	
 }

@@ -184,7 +184,34 @@
 	    				)
 	    
 	</insert>
+	
+	
+	<delete id="delete" parameterType="com.hybrid.model.Dept">
+<!-- 	    parameterType이 primitive이면 생략해도 된다. 그러나 명시적으로는 써주는게 좋다.   -->
+	    
+	    delete from dept 
+	   		  where deptno = #{deptno}
+	    
+	    
+	</delete>
     
+	<delete id="deleteGreaterThan" parameterType="int">
+	    
+		delete from from 
+			  where deptno >= #{deptno}  
+			  <!-- myBatis에서는 > dp 에 의해 error 가 발생 , 왜? >를 xml에서 tag로 인식한다.  --> 	    
+			  <!-- query 문법에서는 틀리지 않으나 xml문서에서는 >를 close 문법으로 인식, entity 라고 하는데 entity 처리를 해주어야 한다.  -->
+	    
+	</delete>
+	
+	
+	<select id="selectGreaterThan" parameterType="int" resultType="com.hybrid.model.Dept">
+	    
+	    <include refid="deptFrom"/>
+	    where deptno >= #{deptno} 
+	    
+	</select>
+	
   
 </mapper>
 

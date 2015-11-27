@@ -19,7 +19,8 @@
         
     </select>
     
-    <select id="selectByDeptno" resultType="com.hybrid.model.Emp">
+<!--     부서 코드로 해당 부서의 직원들을 출력 하는 code  -->
+    <select id="selectByDeptno" parameterType="int" resultType="com.hybrid.model.Emp">
         
         select 
         	    empno , 
@@ -30,12 +31,14 @@
 	    		sal ,  
 	    		comm , 
 	    		deptno 
-        from emp 
+       	   from emp 
         where deptno = #{deptno}
         
     </select>
     
     
+    
+<!--     join 시에만 resultMap 이 필요  -->
     <resultMap id="empResultMapWithDept" type="com.hybrid.model.Emp">
         
         
@@ -158,7 +161,7 @@
         				(
         				#{empno},
         				#{ename, jdbcType=VARCHAR},  <!-- jdbcType= 을 추가하면 null값에도 대응-->
-        				#{job, jdbcType=VARCHAR},
+        				#{job, jdbcType=VARCHAR}, <!-- DB table 에서 각 column 의 type에 따라 jdbcType 처리  -->
         				#{mgr, jdbcType=NUMERIC},
         				#{hiredate, jdbcType=TIMESTAMP},
         				#{sal , jdbcType=NUMERIC},
@@ -168,6 +171,17 @@
         
     </insert>
     
+    
+    
+   <delete id="delete" parameterType="com.hybrid.model.Emp">
+       
+       delete from emp 
+       	where empno = #{empno}
+       
+   </delete>
+    
+   
+   
 </mapper>
 
 

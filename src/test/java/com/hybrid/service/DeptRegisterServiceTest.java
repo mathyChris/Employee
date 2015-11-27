@@ -24,7 +24,7 @@ public class DeptRegisterServiceTest {
 		
 		
 		DeptRegisterService service = ctx.getBean(DeptRegisterService.class); 
-		
+		DeptUnRegisterService uservice = ctx.getBean(DeptUnRegisterService.class); 
 		
 //		Dept dept = new Dept(); 
 //		dept.setDeptno(71);
@@ -54,6 +54,8 @@ public class DeptRegisterServiceTest {
 		
 
 		//////////////////////////////////
+		
+		uservice.unregist(dept1);
 		
 		service.regist(dept1); 
 		

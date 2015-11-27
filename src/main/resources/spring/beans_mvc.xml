@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+
+	<mvc:default-servlet-handler/> <!-- spring에서 default servlet 을 overriding 하여 처리한다.  -->
+	<!-- default servlet과의 충돌 문제를 해결하기 위해 설정해 준다. -->
+	
+	
+	
+<!-- 	<context:component-scan base-package="com.hybrid.controller"/>  -->
+	<!-- 여기서는 controller 를 bean으로 자동으로 등록해준다. -->
+	<!-- component-scan의 역활은 자동으로 scan해서  특정 annotation을 가진 class들을 자동으로 bean 설정을 해주는 것  -->
+	<!-- com.hybrid.controller라는 이름을 가진 package내에서 scan을 하여 Controller 라고 쓰여진  -->
+	
+	<mvc:annotation-driven/> <!-- mvc(controller)처리는 annotation 기반으로 하겠다는 의미 -->
+	<!-- 특정 annotation에 대해 controller 가 작업하도록 한다는 의미 , annotation 기반 처리를 위한 기법 -->
+	
+<!-- 	jsp 처리를 위한 부분 -->
+	<mvc:view-resolvers> 
+	
+		<mvc:jsp prefix="/WEB-INF/view/" suffix=".jsp"/>
+	
+	</mvc:view-resolvers>
+	<mvc:view-controller path="/index.html" view-name="index"/>
+<!-- 	index.html 이라는 이름으로 들어오는 url에 대하여 view-name의 index가 view-resolvers 로 가서 처리 되는데 -->
+<!-- index 앞뒤로 prefix 부분과 suffix 부분이 붙어서 수행된다.  -->
+	
+
+
+<!-- 	정적 파일(css,js,img)을 spring에서 사용할 수 있게 mapping 처리 함 -->
+	<mvc:resources location="/WEB-INF/css/" mapping="/css/**" cache-period="0"/>
+	<mvc:resources location="/WEB-INF/js/" mapping="/js/**" cache-period="0"/>
+	<mvc:resources location="/WEB-INF/img/" mapping="/img/**" cache-period="0"/>
+	
+	
+<!-- 	3가지 web framework 을 mapping 처리  -->
+	<mvc:resources location="/WEB-INF/node_modules/angular/" mapping="/angular/**" />
+	<mvc:resources location="/WEB-INF/node_modules/bootstrap/" mapping="/bootstrap/**" />
+	<mvc:resources location="/WEB-INF/node_modules/jquery/" mapping="/jquery/**" />
+	
+	
+<!-- 수동으로 controller 와 service의 bean 등록 -->
+	<bean class="com.hybrid.controller.CityController">
+		<property name="cityListService" ref="cityListService" />
+		<property name="cityPageService" ref="cityPageService" />
+
+	</bean>
+
+</beans>
+
+
+
+
+
+
+

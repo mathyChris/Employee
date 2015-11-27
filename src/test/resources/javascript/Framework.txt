@@ -1,0 +1,55 @@
+
+
+
+
+#
+# Javascript framework
+#
+Cross browser 대응 
+
+javascript 
+
+1. jQuery ==> jQuery Mobile 
+
+2. Extjs - javascript로 만 구성됨 ==> Sencha Touch 
+
+3. Angularjs ==> MVC framework - jQuery 와 연동 
+
+CSS 
+
+4. Bootstrap ==> RWD (반응형 웹)
+
+
+
+
+#
+#  요청된 URL 매핑 (request 부분) ==> http 프로토콜 상에서는 URL에 의한 요청 방식 밖에 없다. 
+#
+
+우선 순위 (다음과 같다)
+
+1. 정확한 매핑  
+  ex) /xxx 
+  	  /city 
+  	  /dept/register 
+  	  
+2. 경로 매핑 
+  ex) /xxx/yyy/* 
+ 
+3. 확장자 메핑 
+
+  ex) *.jsp 
+  ex) *.do  
+
+4. default 매핑 
+
+  ex) / 
+  
+  ==> 위의 4가지가 없으면 not bound error 발생 
+  
+  
+  http://localhost:8080/Employee/img/img.html
+  http://localhost:8080/Employee/WEB-INF/img/img.html ==> WEB-INF는 직접적인 호출이 안된다. Error 발생 
+
+
+
