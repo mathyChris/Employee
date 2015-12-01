@@ -26,13 +26,14 @@ public class CityController {
 	
 	static Log log = LogFactory.getLog(CityController.class); 
 	
-//	@Autowired // 자동으로 필드에 DI 주입시킴
+	@Autowired // 자동으로 필드에 DI 주입시킴
 	CityListService cityListService; 
 	
-//	@Autowired
+	@Autowired // field injection 
 	CityPageService cityPageService ; 
 	
-////////////////////////////////////////////////////////////////////	
+//////////////////////////////////////////////////////////////////// 수동으로 method 설정 
+/*	
 	public void setCityListService(CityListService service){
 		
 		this.cityListService = service ; 
@@ -44,15 +45,41 @@ public class CityController {
 		this.cityPageService = service ; 
 		
 	}
+	*/
 /////////////////////////////////////////////////////////////////////	
 	
-	@RequestMapping("/city.html")
-	public String getView(){
+//	@RequestMapping("/city.html") // ==> main.thml  getView ==> getMainView 
+	@RequestMapping("/main.html")
+	public String getMainView(){
 
-		log.info("getView()..."); 
+		log.info("getMainView()..."); 
 		
-		return "city/city"; //  /WEF-INF/view/city/dept.jsp 로 return 할 것
+//		return "city/city"; //  /WEF-INF/view/city/dept.jsp 로 return 할 것
+		return "city/main"; //  /WEF-INF/view/city/main.jsp 로 return 할 것
 	}
+	
+	
+	
+//	list.jsp의 mapping 처리 
+	@RequestMapping("/list.html")
+	public String getListView(){
+
+		log.info("getListView()..."); 
+		
+		return "city/list"; 
+	}
+	
+	
+//	detail.jsp ==> detailControl.js ==> main.jsp
+	@RequestMapping("/detail.html")
+	public String getDetailView(){
+
+		log.info("getDetailView()..."); 
+		
+		return "city/detail"; 
+	}
+	
+	
 	
 
 	@RequestMapping(value={"","/"}) // value를 추가하면  "" 와 "/" 둘 다 처리한다.
@@ -118,23 +145,23 @@ public class CityController {
 //	@RequestMapping("/page/{pageNo:[\\-\\+\\*]{0,1}[0-9]+}") //{0,1} 의미는 앞자리가 있거나 없거나의 조건 주는 것  , - 는 \\로 감싸서 
 	@RequestMapping("/page/{pageNo:[\\-\\+]{0,1}[0-9]+}")
 	@ResponseBody
-	/*	public CityPage getCityPage(@PathVariable int pageNo) { // @PathVariable
-		
-		log.info("pageNo = " + pageNo);
-		
-		CityPage cities = new CityPage();
-		
-		Pagination paging = new Pagination(); 
-		
-		paging.setPageNo(pageNo);
-		paging.setTotalItem(4079);
-		
-		cities.setPaging(paging);
-		
-		return cities;
-	}
+//		public CityPage getCityPage(@PathVariable int pageNo) { // @PathVariable
+//		
+//		log.info("pageNo = " + pageNo);
+//		
+//		CityPage cities = new CityPage();
+//		
+//		Pagination paging = new Pagination(); 
+//		
+//		paging.setPageNo(pageNo);
+//		paging.setTotalItem(4079);
+//		
+//		cities.setPaging(paging);
+//		
+//		return cities;
+//	}
 	
-*/
+
 	public CityPage getCityPage(@PathVariable int pageNo) { // @PathVariable
 	
 		CityPage cities = cityPageService.getPage(pageNo) ;

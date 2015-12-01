@@ -12,7 +12,7 @@
 	
 	
 	
-<!-- 	<context:component-scan base-package="com.hybrid.controller"/>  -->
+	<context:component-scan base-package="com.hybrid.controller"/> 
 	<!-- 여기서는 controller 를 bean으로 자동으로 등록해준다. -->
 	<!-- component-scan의 역활은 자동으로 scan해서  특정 annotation을 가진 class들을 자동으로 bean 설정을 해주는 것  -->
 	<!-- com.hybrid.controller라는 이름을 가진 package내에서 scan을 하여 Controller 라고 쓰여진  -->
@@ -40,16 +40,23 @@
 	
 <!-- 	3가지 web framework 을 mapping 처리  -->
 	<mvc:resources location="/WEB-INF/node_modules/angular/" mapping="/angular/**" />
+	
+	<!-- 4가지 추가된 module을 추가... route, touch, animate, loading bar -->
+	<mvc:resources location="/WEB-INF/node_modules/angular-route/" mapping="/angular-route/**" />
+	<mvc:resources location="/WEB-INF/node_modules/angular-touch/" mapping="/angular-touch/**" />
+	<mvc:resources location="/WEB-INF/node_modules/angular-animate/" mapping="/angular-animate/**" />
+	<mvc:resources location="/WEB-INF/node_modules/angular-loading-bar/" mapping="/angular-loading-bar/**" />
+	
 	<mvc:resources location="/WEB-INF/node_modules/bootstrap/" mapping="/bootstrap/**" />
 	<mvc:resources location="/WEB-INF/node_modules/jquery/" mapping="/jquery/**" />
 	
 	
 <!-- 수동으로 controller 와 service의 bean 등록 -->
-	<bean class="com.hybrid.controller.CityController">
-		<property name="cityListService" ref="cityListService" />
-		<property name="cityPageService" ref="cityPageService" />
+<!-- 	<bean class="com.hybrid.controller.CityController"> -->
+<!-- 		<property name="cityListService" ref="cityListService" /> -->
+<!-- 		<property name="cityPageService" ref="cityPageService" /> -->
 
-	</bean>
+<!-- 	</bean> -->
 
 </beans>
 

@@ -62,7 +62,8 @@
 		
 		$scope.pageNo = 1  ;
 		$scope.cities = []; 
-		$scope.paging = [] ; 
+		$scope.paging = {} ; 
+// 		$scope.paging = [] ; 
 		
 		$scope.selectPage = function(){ 
 		
@@ -84,6 +85,8 @@
 	
 		$scope.prevClick = function(pageNo) {
 			
+			console.log("PrevClick()...pageNo = " + pageNo); 
+			
 	// 		alert("PageNo = " + (pageNo - 1));
 			$scope.pageNo = pageNo;
 			$scope.selectPage(); 
@@ -93,6 +96,8 @@
 	
 		$scope.nextClick = function(pageNo) {
 			
+			console.log("NextClick()...pageNo = " + pageNo); 
+			
 // 			alert("PageNo = " + (pageNo + 1)); 
 			$scope.pageNo = pageNo;
 			$scope.selectPage(); 
@@ -101,6 +106,8 @@
 		
 		
 		$scope.pageClick = function(pageNo) {
+			
+			console.log("PageClick()...pageNo = " + pageNo); 
 			
 			$scope.pageNo = pageNo;
 			$scope.selectPage(); 
@@ -128,12 +135,13 @@
 		<div class="col-sm-8">
 		
 		
-		<div class="table-responsive">
 		
 			<ul class="pagination">
 				<li> <a ref="#" data-ng-click="prevClick(paging.firstPage - 1)"> Prev </a></li>
 				
-				<li data-ng-repeat="">
+				<li data-ng-repeat="city in cities">
+					
+					<a href="#" data-ng-click="pageClick(paging.firstPage + $index)">{{paging.firstPage + $index}}</a>
 					
 				</li>
 				
