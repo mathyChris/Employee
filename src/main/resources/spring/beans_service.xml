@@ -21,6 +21,14 @@
 	
 	</bean>
 	
+
+<!-- 	City Register service -->
+	<bean id="cityRegisterService" class="com.hybrid.service.CityRegisterService">
+		
+			<property name="cityDao" ref="cityDao"/>
+	
+	</bean>	
+	
 	
 
 

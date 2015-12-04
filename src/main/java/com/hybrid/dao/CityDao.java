@@ -42,12 +42,19 @@ public class CityDao {
 		
 		
 		return cityMapper.selectByCountryCode(countryCode) ;
+		
 	}
+	
 	
 	public int insert(City city) {
 		
-		return cityMapper.insert(city) ; 
+		int rtn = cityMapper.insert(city) ; 
+		
+		return city.getId() ; 
+		
+//		return cityMapper.insert(city); // insert 의 원래 return 값 ==> 이를 위와 같이 변경 
 	}
+	
 	
 	public int deleteAll() {
 		
@@ -56,3 +63,6 @@ public class CityDao {
 	
 	
 }
+
+
+

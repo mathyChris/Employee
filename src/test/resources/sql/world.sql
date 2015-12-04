@@ -94,7 +94,7 @@ select * from city ;
 
 
 --
---
+-- select all
 -- query 문은 한줄로 작성하지 않는다. 
 select  id, 
 		name,
@@ -102,9 +102,29 @@ select  id,
 		district, 
 		population
 		
-   from city ; 
+   from city 
+   where countrycode = 'KOR'
+   ; 
 
+--
+--
+--
+insert into city
+				(
+				name, 
+				countryCode, -- no diffenent between uppper & lower letters
+				district, 
+				population
+				)
+			values
+				(
+				'Pyungyang',
+				'KOR',
+				'Pyungyang',
+				1000000
+				)  
    
+   ; 
 --
 --
 -- 

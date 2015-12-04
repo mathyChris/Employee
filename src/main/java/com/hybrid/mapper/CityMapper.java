@@ -7,7 +7,7 @@ import com.hybrid.util.Pagination;
 
 public interface CityMapper {
 	
-	int selectCount(); // totalItem의 개념 
+	int selectCount(); // totalItem의 number(전체수) 개념 
 	List<City> selectAll() ; 
 	List<City> selectPage(Pagination paging); // 
 	List<City> selectByCountryCode(String countryCode); 

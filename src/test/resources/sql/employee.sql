@@ -73,7 +73,7 @@ select *from member;
 
 
 
-create sequence member_id_seq 
+create sequence member_id_seq -- autoincrement 의 기능 
 
 
 -- create 에 해당 
@@ -128,27 +128,61 @@ create table city (
 --	  
 --	  
 select *from city ;
+delete from city ; 
 
+-- automatically generate 'id' number 
 create sequence city_id_seq
 
 insert into city 
-(
-	id, 
-	name, 
-	countrycode, 
-	district, 
-	population
-	
-)
-values
-(
-	city_id_seq.nextval, 
-	Seoul,
-	KOR,
-	GyungSang,
-	10000000
+			(
+				id, 
+				name, 
+				countrycode, 
+				district, 
+				population
+				
+			)
+			values
+			(
+				city_id_seq.nextval, 
+				'Seoul',
+				'KOR',
+				'GyungSang',
+				10000000
+			
+			) ; 
 
-) 
+
+
+
+--
+-- 
+--
+drop sequence city_id_generator  ;
+
+create sequence city_id_generator start with 4090 ; -- start with 4090부터 발번이 시작됨
+
+select city_id_generator.nextval from dual  ; -- 실행하면 4090번 이후로 새로운 번호를 계속 발급한다. 
+
+insert into city 
+			(
+				id, 
+				name, 
+				countrycode, 
+				district, 
+				population
+				
+			)
+			values
+			(
+				city_id_generator.nextVal, 
+				'Seoul',
+				'KOR',
+				'GyungSang',
+				10000000
+			
+			) 
+
 
 
 -- 

@@ -27,6 +27,7 @@ public class CityTransfer {
 		
 		
 //		oracleCityMapper.deleteAll() ; 
+	
 		int deleteCount = oracleCityMapper.deleteAll();
 		log.info("Oracle City Delete Count = " + deleteCount);
 		
@@ -57,6 +58,15 @@ public class CityTransfer {
 				
 				System.out.print(".");
 				System.out.flush();
+				
+				
+				// switching code "null" to " "
+				if(c.getDistrict().equals("")){
+					
+					c.setDistrict(" "); 
+					
+				} // There are some 'null' data of district in "mysql" so the process to transfer data to oracle, get a null problem happen 
+				
 				int rtn = oracleCityMapper.insert(c);
 				log.info("rtn = " + rtn);
 			}

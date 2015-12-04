@@ -1,10 +1,12 @@
 package com.hybrid.dao;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.context.support.GenericXmlApplicationContext;
+import org.springframework.dao.DataIntegrityViolationException;
 
 import com.hybrid.model.City;
 import com.hybrid.model.Dept;
@@ -17,6 +19,59 @@ public class CityDaoTest {
 	
 	public static void main(String[] args){
 		
+//		selectTest(); 
+		insertTest(); 
+		
+	}
+	
+	
+	
+	static void insertTest(){
+		
+		GenericXmlApplicationContext ctx = new GenericXmlApplicationContext("spring/beans_dao.xml"); 
+		
+		CityDao dao = ctx.getBean(CityDao.class) ;
+		
+		City city = new City(); 
+		city.setName("angular"); 
+		city.setDistrict("programming"); 
+		city.setCountryCode("web");
+		city.setPopulation(2000000);
+		
+		
+		try{
+			
+			int id = dao.insert(city); 
+			
+				log.info("generated id = " + id); 
+			
+		}catch(DataIntegrityViolationException d) {
+			
+				log.info(d.getMessage());
+		}
+		
+		
+		List<City> list = dao.selectByCountryCode("web"); 
+		
+		list.forEach(new Consumer<City>() {
+
+			@Override
+			public void accept(City t) {
+				
+				log.info("id = " + t.getId());
+				log.info("name = " + t.getName());
+				
+			}
+			
+		});
+		
+		ctx.close(); 
+		
+	}
+	
+	
+		
+	static void selectTest(){
 		
 		GenericXmlApplicationContext ctx = new GenericXmlApplicationContext("spring/beans_dao.xml"); 
 	
@@ -33,8 +88,6 @@ public class CityDaoTest {
 		List<City> page = dao.selectPage(paging);
 		log.info("Page size = " + page.size()) ; 
 		
-		
-		
 //		list = dao.selectAll() ;
 //		
 //		log.info("dept size = " + list.size()); 
@@ -44,6 +97,8 @@ public class CityDaoTest {
 //		dao.selectByDeptno(10) ;
 //		
 //		dao.selectByDeptnoWithEmps(30) ;
+		
+		ctx.close(); 
 		
 	}
 	

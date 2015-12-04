@@ -36,10 +36,11 @@
 				population
 				
 		   from city
-	   order by countrycode asc, name asc
+	   order by id desc
  	      limit #{start}, #{length}
         
     </select>
+    
     
 <!--     Oracle -->
     <select id="selectPage" 
@@ -47,19 +48,19 @@
             resultType="com.hybrid.model.City"
             databaseId="oracle"> <!-- 이 부분을 추가하여 DB 구분  -->
         
-  select out.*
-	from (
-			select rownum rn, in_.* 
-			  from (
-			  		select * 
-			  		from city 
-			  		order by countrycode asc, name asc) in_
-		 ) out
-<!-- 	where out.rn >= #{firstItem} -->
-<!-- 	  and out.rn <= #{lastItem} -->
-		where out.rn &gt;= #{firstItem}
-		  and out.rn &lt;=#{lastItem}
-	order by rn	
+	  select out.*
+		from (
+				select rownum rn, in_.* 
+				  from (
+				  		select * 
+				  		from city 
+				  		order by id desc) in_
+			 ) out
+	<!-- 	where out.rn >= #{firstItem} -->
+	<!-- 	  and out.rn <= #{lastItem} -->
+			where out.rn &gt;= #{firstItem}
+			  and out.rn &lt;=#{lastItem}
+		order by rn	
         
     </select>
     
@@ -78,13 +79,16 @@
     </select>
     
     
-<!--     C : Create  -->
-    <insert id="insert" parameterType="com.hybrid.model.City" >
+<!--     C : Create  / mysql -->
+    <insert id="insert" 
+        	parameterType="com.hybrid.model.City" 
+        	
+        	useGeneratedKeys="true"
+        	keyProperty="id"
+        	databaseId="mysql"> <!-- 자동 발생한 id를 구하기 위해 use~ & key~ 를 사용  -->
         
         insert into city 
 						(
-							
-							id, 
 							name, 
 							countrycode, 
 							district, 
@@ -94,16 +98,51 @@
 						
 				   values
 						(
-							
-							#{id}, 
-							#{name}, 
-							#{countryCode}, 
-							#{district}, 
-							#{population} 
+			
+							#{name, jdbcType = VARCHAR}, 
+							#{countryCode, jdbcType = VARCHAR}, 
+							#{district, jdbcType = VARCHAR}, 
+							#{population, jdbcType = NUMERIC} 
 
 						) 
         
     </insert>
+    
+
+    <!--     C : Create / oracle -->
+    <insert id="insert" 
+        	parameterType="com.hybrid.model.City" 
+        	databaseId="oracle"> <!-- oracle 에서는 id를 자동 발생시키지 않으므로 use~ & key~를 제거 -->
+        
+        <selectKey keyProperty="id" resultType="int" order="BEFORE">
+            
+            select city_id_generator.nextVal from dual 
+            
+        </selectKey>
+        
+        insert into city 
+						(
+							id,
+							name, 
+							countrycode, 
+							district, 
+							population
+							
+						)
+						
+				   values
+						(
+							#{id, jdbcType = NUMERIC}, 
+							#{name, jdbcType = VARCHAR}, 
+							#{countryCode, jdbcType = VARCHAR}, 
+							#{district, jdbcType = VARCHAR}, 
+							#{population, jdbcType = NUMERIC} 
+
+						) 
+        
+    </insert>
+    
+    
     
 <!--     U : Update  -->
 
@@ -116,6 +155,7 @@
 	
 	
 <!-- 	D : delete  -->
+
 	<delete id="deleteAll" parameterType="com.hybrid.model.City">
 	    
 	    delete from city

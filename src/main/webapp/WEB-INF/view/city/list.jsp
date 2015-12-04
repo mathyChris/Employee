@@ -37,10 +37,25 @@
 			
 			</ul>
 		
+<!-- 			<a href="#/append" class="btn btn-primary">Append</a> -->
+		
 			<table class="table table-condensed table-bordered table-striped table-hover" >
 			
 				<thead>
-					<th> Index </th> <th> ID  </th> <th> Name </th> <th>CountryCode</th> <th>District</th> <th>Population</th>
+					<tr><td> <a href="#/append" class="btn btn-primary">Append</a> </td></tr>
+				
+					<tr>
+					
+						<th> Index </th> 
+						<th> Id  </th> 
+						<th> Name </th> 
+						<th>CountryCode</th> 
+						<th>District</th> 
+						<th>Population</th>
+						<th>Edit</th>
+						<th>Delete</th>
+					
+					</tr>
 				</thead>
 				
 				<tbody>
@@ -51,9 +66,10 @@
 						<td> <a href="#/detail"> {{city.id}}</a></td> <!--  -->
 						<td> {{city.name}} </td>
 						<td>{{city.countryCode}}</td>
-						<td>{{city.population}}</td>
 						<td>{{city.district}}</td>
-						
+						<td>{{city.population}}</td>
+						<td><a href="#/modify" class="btn btn-success"> Edit ...</a></td>
+						<td><a href="#/delete" class="btn btn-info"> Delete...</a></td>
 						
 					</tr>
 				</tbody>

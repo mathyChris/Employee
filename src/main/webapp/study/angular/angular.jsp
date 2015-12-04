@@ -120,7 +120,7 @@
 	</thead>
 	<tbody>
 	<tr>
-		<td class="red">{{depts[0].deptno}}</td>
+		<td class="red"> {{depts[0].deptno}} </td>
 		<td>{{depts[0].dname}}</td>
 		<td>{{depts[0].loc}}</td>
 	</tr>
@@ -159,10 +159,6 @@
 		<img class="img-circle img-responsive" alt="{{img.alt}}" src="{{img.src}}">
 	</li>
 </ul>
-
-
-
-
 
 
 </body>

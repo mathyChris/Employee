@@ -20,9 +20,22 @@
 
 
 <!-- URL Resolve -->
-<c:url var ="URL_GET_LIST" value="/city/"/>
-<c:url var ="URL_GET_PAGE_BASE" value="/city/page/"/>
-<c:url var ="URL_GET_ITEM_BASE" value="/city/"/>
+<c:url var ="URL_GET_LIST" 				value="/city/"/>
+<c:url var ="URL_GET_PAGE_BASE" 		value="/city/page/"/> <%-- /city/page/{pageNo} --%>
+<c:url var ="URL_GET_ITEM_BASE" 		value="/city/"/>	  <%-- /city/{id} --%>
+
+
+<c:url var ="URL_POST_LIST_APPEND" 		value="/city/"/>
+<c:url var ="URL_POST_ITEM_APPEND" 		value="/city/"/>
+
+<c:url var ="URL_PUT_LIST_MODIFY" 		value="/city/"/>
+<c:url var ="URL_PUT_ITEM_MODIFY_BASE"	value="/city/"/>  <%-- /city/{id} --%>
+
+
+
+<c:url var ="URL_DELETE_ITEM_DELETE_BASE" value="/city/"/>  <%-- /city/{id} --%>
+
+
 
 <script type="text/javascript">
 
@@ -31,7 +44,17 @@
 			
 			GET_LIST : 			"${URL_GET_LIST}" , 
 			GET_PAGE_BASE : 	"${URL_GET_PAGE_BASE}" , 
-			GET_ITEM_BASE : 	"${URL_GET_ITEM_BASE}"
+			GET_ITEM_BASE : 	"${URL_GET_ITEM_BASE}", 
+			
+			
+			POST_LIST_APPEND : 	"${URL_POST_LIST_APPEND}",
+			POST_ITEM_APPEND : 	"${URL_POST_ITEM_APPEND}",
+			
+			PUT_LIST_MODIFY : 	"${URL_PUT_LIST_MODIFY}",
+			PUT_ITEM_MODIFY_BASE : 	"${URL_PUT_ITEM_MODIFY_BASE}",
+			
+			
+			DELETE_ITEM_DELETE_BASE : 	"${URL_DELETE_ITEM_DELETE_BASE}"
 			
 	}; 
 
@@ -87,8 +110,16 @@
 <c:url var="listController" value="/js/city/listController.js"/>
 <c:url var="detailController" value="/js/city/detailController.js"/>
 
+<c:url var="appendController" value="/js/city/appendController.js"/>
+<c:url var="modifyController" value="/js/city/modifyController.js"/>
+<c:url var="deleteController" value="/js/city/deleteController.js"/>
+
 <script type="text/javascript" src="${listController}"></script>
 <script type="text/javascript" src="${detailController}"></script>
+
+<script type="text/javascript" src="${appendController}"></script>
+<script type="text/javascript" src="${modifyController}"></script>
+<script type="text/javascript" src="${deleteController}"></script>
 
 
 

@@ -182,7 +182,8 @@
 	
 	<aop:aspectj-autoproxy/> <!-- auto_proxy 는 자동 삽입   -->
 	
-	<bean class="com.hybrid.aspect.LogDaoAspect"/>
+<!-- 	<bean class="com.hybrid.aspect.LogDaoAspect"/> -->
+	<bean class="com.hybrid.aspect.LogAspect"/>
 	
 <!-- 	<bean class="com.hybrid.aspect.TransactionAspect" > -->
 	
