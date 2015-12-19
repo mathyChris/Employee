@@ -29,7 +29,29 @@
 	
 	</bean>	
 	
+
+<!-- 	City detail service -->
+	<bean id="cityDetailService" class="com.hybrid.service.CityDetailService">
+		
+			<property name="cityDao" ref="cityDao"/>
 	
+	</bean>		
+
+	
+<!-- 	City Modify service -->
+	<bean id="cityModifyService" class="com.hybrid.service.CityModifyService">
+		
+			<property name="cityDao" ref="cityDao"/>
+	
+	</bean>		
+
+		
+<!-- 	City UnRegister service -->
+	<bean id="cityUnRegisterService" class="com.hybrid.service.CityUnRegisterService">
+		
+			<property name="cityDao" ref="cityDao"/>
+	
+	</bean>		
 
 
 </beans>

@@ -65,6 +65,21 @@
     </select>
     
     
+        <select id="selectById" parameterType="int" resultType="com.hybrid.model.City">
+        
+		select  id, 
+				name,
+				countryCode,
+				district, 
+				population
+				
+		   from city    
+		  where id = #{id}
+        
+    </select>
+    
+    
+    
     <select id="selectByCountryCode" parameterType="string" resultType="com.hybrid.model.City">
         
 		select  id, 
@@ -148,13 +163,23 @@
 
 	<update id="update" parameterType="com.hybrid.model.City">
 	    
-	    
-	    
+	     update city 
+	    	set name 		= #{name}, 
+	    	    countryCode = #{countryCode}, 
+	    		district  	= #{district}, 
+	    		population	= #{population}
+	    	where id 		= #{id}	
 	    
 	</update>
 	
 	
 <!-- 	D : delete  -->
+
+    <delete id="deleteById" parameterType="int"> 
+	    
+	    delete from city where id = #{id}
+	    
+	</delete>
 
 	<delete id="deleteAll" parameterType="com.hybrid.model.City">
 	    

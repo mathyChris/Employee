@@ -9,32 +9,45 @@
 <!-- css -->
 <c:url var="bootstrap" 			 value="/bootstrap/dist/css/bootstrap.css"/>  <!-- server 에서 동작  -->
 <c:url var="angular_loading_bar" value="/angular-loading-bar/build/loading-bar.css"/> 
+<c:url var="font_awesome_css" value="/font-awesome/css/font-awesome.css"/> <!-- - 는 사용이 안됨. _ 사용 -->
+<c:url var="metismenu_css" value="/metismenu/dist/metisMenu.css"/> <!-- node_modules 로부터 경로 생성 ==> /  -->
 
-<link rel="stylesheet" href="${bootstrap}"/>
+
+<link rel="stylesheet" href="${bootstrap}"/> <!-- web_browser에게 link tag 를 이용해 날려 보내준다.  -->
 <link rel="stylesheet" href="${angular_loading_bar}"/>
+<link rel="stylesheet" href="${font_awesome_css}"/>
+<link rel="stylesheet" href="${metismenu_css}"/>
 
 
 
 <!--  javaScript -->
 <c:url var="angular" 			 value="/angular/angular.js"/>
 <c:url var="jquery" 			 value="/jquery/dist/jquery.js"/>
+<c:url var="bootstrap_js" 		 value="/bootstrap/dist/js/bootstrap.js"/> <!-- drop-down 기능 등 bootstrap의 동적 부분 -->
 
 <c:url var="angular_route" 		 value="/angular-route/angular-route.js"/>
 <c:url var="angular_animate" 	 value="/angular-animate/angular-animate.js"/>
 <c:url var="angular_touch" 		 value="/angular-touch/angular-touch.js"/>
-<c:url var="angular_loading_bar" value="/angular-loading-bar/build/loading-bar.js"/> <!--  -->
+<c:url var="angular_loading_bar" value="/angular-loading-bar/build/loading-bar.js"/> <!-- 데이터를 가져올 때 loading 하는 것을 시각적으로 표시하도록 하는 library  -->
+<c:url var="angular_ui_bootstrap" value="/angular-ui-bootstrap/ui-bootstrap.js"/>
+<c:url var="angular_ui_bootstrap_tpls" value="/angular-ui-bootstrap/ui-bootstrap-tpls.js"/>
+
+<c:url var="metismenu_js" value="/metismenu/dist/metisMenu.js"/>
 
 
 
 <script type="text/javascript" src="${angular}"></script>
 <script type="text/javascript" src="${jquery}"></script>
+<script type="text/javascript" src="${bootstrap_js}"></script>
 
 <script type="text/javascript" src="${angular_route}"></script>
 <script type="text/javascript" src="${angular_animate}"></script>
 <script type="text/javascript" src="${angular_touch}"></script>
 <script type="text/javascript" src="${angular_loading_bar}"></script>
+<script type="text/javascript" src="${angular_ui_bootstrap}"></script>
+<script type="text/javascript" src="${angular_ui_bootstrap_tpls}"></script>
 
-
+<script type="text/javascript" src="${metismenu_js}"></script>
 
 
 

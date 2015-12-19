@@ -10,9 +10,15 @@ public interface CityMapper {
 	int selectCount(); // totalItem의 number(전체수) 개념 
 	List<City> selectAll() ; 
 	List<City> selectPage(Pagination paging); // 
+	
+	City selectById(int id); //
+	
 	List<City> selectByCountryCode(String countryCode); 
 	
 	int insert(City city) ;
+	
+	int update(City city) ; //
+	int deleteById(int id) ; //
 	
 	int deleteAll(); 
 	

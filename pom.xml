@@ -42,6 +42,13 @@
 	</dependency>
 	
 	<dependency>
+		<groupId>javax.servlet.jsp</groupId>
+		<artifactId>javax.servlet.jsp-api</artifactId>
+		<version>2.3.1</version>
+	</dependency>
+	
+
+	<dependency>
 		<groupId>javax.servlet</groupId>
 		<artifactId>jstl</artifactId>
 		<version>1.2</version>
@@ -132,6 +139,13 @@
 		<groupId>com.marvinformatics.formatter</groupId>
 		<artifactId>jsdt-core</artifactId>
 		<version>1.6.0.RC4</version>
+	</dependency>
+	
+	
+	<dependency>
+		<groupId>org.sitemesh</groupId>
+		<artifactId>sitemesh</artifactId>
+		<version>3.0.1</version>
 	</dependency>
 	
 

@@ -32,7 +32,6 @@
 <c:url var ="URL_PUT_ITEM_MODIFY_BASE"	value="/city/"/>  <%-- /city/{id} --%>
 
 
-
 <c:url var ="URL_DELETE_ITEM_DELETE_BASE" value="/city/"/>  <%-- /city/{id} --%>
 
 
@@ -63,11 +62,27 @@
 	            'ngRoute',
 	            'ngAnimate',
 	            'ngTouch',
-	            'angular-loading-bar' // chart , progress 이든 dependency 로 사용하기 위해 여기에 추가하면 된다. 
+	            'angular-loading-bar', // chart , progress 이든 dependency 로 사용하기 위해 여기에 추가하면 된다. 
+	            'ui.bootstrap'
 	            
 	           ];
 
 	var app = angular.module('employeeApp', deps); 
+	
+	
+	
+	// in default webpage, 디폴트 페이지로 /list 를 붙여 보여줌 , 상단 내비 바를 눌러도 화면 loading되게 함....
+	app.config(function($routeProvider) {
+		
+		
+		$routeProvider.otherwise({
+			
+			redirectTo: "/list" // 이걸 추가하면 아래의 $location.path("/list")를 없애도 된다. 
+			
+		}); 
+		
+	}); 
+	
 	
 	// constant 의 사용 
 	app.constant("URL", urls) ;  // angular 의 factory 에 넣은 것과 같다. 따라서 얼마든지 여러 곳에 injection 가능(여기저기 사용 가능) 
@@ -97,10 +112,25 @@
 		
 		console.log("mainController...");
 		
-		$location.path("/list") ; //  automatic, adding '#/list' to URL in 'URL window'
+//		$location.path("/list") ; //  automatic, adding '#/list' to URL in 'URL window', 위의 app.config를 붙이면 생략 가능 
 		// http://localhost:8080/Employee/city/main.html#/list
+		
+		
+		
+// bootstrap_js를 다운 받아서 아래 두 군데 ($scope.StaticOrFixed 와 $scope.setMenuStyle() )에서  static/fixed 를 구현하도록 함... 
+		$scope.StaticOrFixed = "navbar-static-top" ; 
+		
+		// navi-bar change to Fixed or Static
+		$scope.setMenuStyle = function(str){
+			
+			
+			$scope.StaticOrFixed = str; 
+			
+		}; 
 	
 	});
+////////////////////////////////////////////////////////	
+	
 	
 	
 </script>
@@ -127,6 +157,7 @@
 
 <body data-ng-controller="mainController" class="container">
 
+ 
 	<h1> {{title}} </h1>
 	
 	<div data-ng-view> <!--  -->

@@ -7,7 +7,7 @@
 		
  		console.log("/detail config ... "); 
 	
- 		$routeProvider.when("/detail" , { // main.jsp 의 <div data-ng-view> 부분으로 들어간다. 
+ 		$routeProvider.when("/detail/:id" , { // main.jsp 의 <div data-ng-view> 부분으로 들어간다. 
 			
  			templateUrl: "detail.html", 
  			controller : "detailController"	
@@ -18,10 +18,11 @@
 
 
 //	2. detailController 설정 부분 	
-app.controller('detailController', function($scope, $http, URL){ // $http는 Ajax를 사용하기 위한 것 
+app.controller('detailController', function($scope, $http, URL, $routeParams){ // $http는 Ajax를 사용하기 위한 것 
 	
 	console.log("detailController..."); 
 	console.log("URL.GET_ITEM_BASE = " + URL.GET_ITEM_BASE); 
+	console.log("id = " + $routeParams.id); 
 
 	$scope.$parent.title = "Detail City View"; 	
  

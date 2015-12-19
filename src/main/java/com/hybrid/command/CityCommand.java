@@ -102,7 +102,7 @@ public class CityCommand {
 	public City getCity(){
 		
 		City city = new City(); 
-//		city.setId(Id);
+		city.setId(Id);
 		city.setName(Name);
 		city.setCountryCode(CountryCode);
 		city.setDistrict(District);

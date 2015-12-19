@@ -19,9 +19,12 @@ import com.hybrid.model.CityList;
 import com.hybrid.model.CityPage;
 import com.hybrid.model.Dept;
 import com.hybrid.model.DeptList;
+import com.hybrid.service.CityDetailService;
 import com.hybrid.service.CityListService;
+import com.hybrid.service.CityModifyService;
 import com.hybrid.service.CityPageService;
 import com.hybrid.service.CityRegisterService;
+import com.hybrid.service.CityUnRegisterService;
 import com.hybrid.util.Pagination;
 
 @Controller
@@ -38,6 +41,19 @@ public class CityController {
 	
 	@Autowired // field injection 
 	CityRegisterService cityRegisterService ; 
+	
+	
+	//
+	@Autowired // field injection 
+	CityDetailService cityDetailService ; 
+	
+	//
+	@Autowired // field injection 
+	CityModifyService cityModifyService ; 
+	
+	//
+	@Autowired // field injection 
+	CityUnRegisterService cityUnRegisterService ; 
 	
 //////////////////////////////////////////////////////////////////// 수동으로 method 설정 
 /*	
@@ -215,9 +231,12 @@ public class CityController {
 		
 		log.info("getCityItem()... id = " + id); 
 		
-		City city = new City(); 
-		city.setId(id);
-		city.setName("SEOUL");
+//		City city = new City(); 
+//		city.setId(id);
+//		city.setName("SEOUL"); // 이 부분은 test 를 위해 만든 데이터이므로 comment 처리하고 아래를 만든다. 
+		
+		
+		City city = cityDetailService.detail(id); // 
 		
 		return city  ;
 	}
@@ -303,15 +322,18 @@ public class CityController {
 	 * 
 	 * put = update 
 	 * */
+	
+	// 이 부분이 수정하는 부분 
 	@RequestMapping(value="/{id:[0-9]+}" , method = RequestMethod.PUT)
 	@ResponseBody 
-	public CityCommand putCityModify(@PathVariable int id,  @RequestBody CityCommand city){
+	public CityCommand putCityModify(@PathVariable int id,  @RequestBody CityCommand command){
+		
 		log.info("putCityModify()... id = " + id);
+		log.info("putCityModify()... city id = " + command.getId());
 		
-		log.info("putCityModify()... city id = " + city.getId());
+		cityModifyService.modify(command.getCity()); 
 	
-		return city ; 
-		
+		return command ; 
 		
 	}
 	
@@ -323,16 +345,17 @@ public class CityController {
 	 * */
 	@RequestMapping(value="/{id:[0-9]+}" , method = RequestMethod.DELETE)
 	@ResponseBody 
-	public CityCommand deleteCity(@PathVariable int id){
+	public void deleteCity(@PathVariable int id){ // City --> void : 삭제 후 return 되는 특정 값을 받을 필요가 없기 때문에... 
 		log.info("deleteCity()... id = " + id);
 		
-		CityCommand city = new CityCommand(); 
+//		CityCommand city = new CityCommand(); 
+//		
+//		city.setId(id);
 		
-		city.setId(id);
+		
+		cityUnRegisterService.unregist(id); 
 	
-		return city ; 
-		
-		
+//		return city ; 
 	}
 	
 	

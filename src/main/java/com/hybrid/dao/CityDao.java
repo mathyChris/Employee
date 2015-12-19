@@ -38,6 +38,15 @@ public class CityDao {
 	} // 
 	
 	
+	//
+	public City selectById(int id){
+		
+		
+		return cityMapper.selectById(id) ;
+		
+	}
+	
+	
 	public List<City> selectByCountryCode(String countryCode){
 		
 		
@@ -55,6 +64,17 @@ public class CityDao {
 //		return cityMapper.insert(city); // insert 의 원래 return 값 ==> 이를 위와 같이 변경 
 	}
 	
+	//
+	public int update(City city) {
+		
+		return cityMapper.update(city) ; 
+	}
+	
+	//
+	public int deleteById(int id) {
+		
+		return cityMapper.deleteById(id) ; 
+	}
 	
 	public int deleteAll() {
 		

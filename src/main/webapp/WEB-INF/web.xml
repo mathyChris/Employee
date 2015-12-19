@@ -12,6 +12,27 @@
   
   
   
+  
+<!-- 5. sitemesh filter 를 설정 하는 부분  -->
+	<filter>
+	    <filter-name>sitemesh</filter-name>
+	    <filter-class>org.sitemesh.config.ConfigurableSiteMeshFilter</filter-class>
+	    
+	    <init-param>
+	        <param-name>configFile</param-name>
+	        <param-value>/WEB-INF/sitemesh3.xml</param-value>
+	    </init-param>
+	    
+	</filter>
+
+	
+    <filter-mapping>
+	    <filter-name>sitemesh</filter-name>
+	    <url-pattern>/*</url-pattern>
+    </filter-mapping>
+  
+  
+  
 <!--   1. Encoding filter setting -->  
   <filter>
       
@@ -66,13 +87,10 @@
 		</param-value>
 	</context-param>
 
-	<!-- Bootstraps the root web application context before servlet initialization -->
+	<!-- 4. Bootstraps the root web application context before servlet initialization -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-	
-	
-	
 	
   
 </web-app>
