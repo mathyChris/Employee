@@ -5,18 +5,20 @@ select * from dept ;
 
 select *from emp ;
 
-
+select *from member; 
 
 create table member(
 	
 	id 				int,
-	email  			varchar(255),  
-	name 			varchar(255), 
-	password 		varchar(255), 
+	email  			varchar(255) not null,  
+	name 			varchar(255) not null, 
+	password 		varchar(255) not null, 
 	register_date 	date, 
 	constraint pk_id primary key (id)
 	
 ); 
+
+
 
 
 
@@ -87,6 +89,18 @@ values
 
 
 
+--
+--  
+create sequence member_id_generator ; 
+
+insert into member
+(id, email, name, password, register_date)
+values
+(member_id_generator.nextval, 'xxxx@xxxx', 'Hong', '1234', '2015/11/09')
+
+-- (member_id_generator.nextval, 'xxxx@xxxx', 'Hong', '1234', '2015/11/09')
+
+
 -- read 에 해당 
 select *from member ;
 
@@ -105,7 +119,13 @@ update member
 		
 	where name = Hong; 
 	
-
+--
+-- sequence 정상 생성 확인 
+-- 
+select *from user_sequences ; -- 
+	
+	
+	
 -- 	
 --mysql --> city table 을 oracle 에서 생성한다. 
 -- city 
@@ -384,7 +404,12 @@ create table country (
 --  code2 			char(2) not null default '',
        	 		
        	 		
-       	 		
+-- 
+select * from member ;   
+
+drop table member ;
+
+
        	 		
        	 		
        	 		

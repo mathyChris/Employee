@@ -18,12 +18,14 @@ drop table member;
 
 create table member(
 	
-	id 				int not null auto_increment,
-	email  			varchar(255),  
-	name 			varchar(255), 
-	password 		varchar(255), 
+--	id 				int not null auto_increment,
+	id 				int auto_increment,
+	email  			varchar(255) not null,  
+	name 			varchar(255) not null, 
+	password 		varchar(255) not null, 
 	register_date 	date, 
-	constraint pk_id primary key (id)
+--	constraint pk_id primary key (id)
+	constraint pk_member_id primary key (id)
 	
 ); 
 

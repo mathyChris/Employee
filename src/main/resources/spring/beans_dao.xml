@@ -115,15 +115,19 @@
 	
 
 <!-- 	MemberMapper -->
-	<bean class="org.mybatis.spring.mapper.MapperFactoryBean">
+	<bean id="memberMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
 
 			<property name="mapperInterface" value="com.hybrid.mapper.MemberMapper"></property>
 			<property name="sqlSessionTemplate" ref="sqlSession"></property>
 	
 	</bean>
 	
-	
-	
+<!-- memberDao -->	
+
+
+      <bean id="memberDao" class="com.hybrid.dao.MemberDao">
+	  <property name="memberMapper" ref="memberMapper" /> 
+	  </bean>
 	
 	
 <!-- 	CityMapper -->

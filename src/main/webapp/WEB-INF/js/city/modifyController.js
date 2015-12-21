@@ -31,7 +31,7 @@ app.controller('modifyController', function($scope, $http, URL, $routeParams, $l
 	////// 조회 기능 : controller의 $routeParams 을 
 	
 	// 조회하는 기능을 설정하기위해 ajax 를 하나 정의 
-	var ajax = $http.get(URL.GET_ITEM_BASE + $routeParams.id); // /city/2000
+	var ajax = $http.get(URL.GET_ITEM_BASE + $routeParams.id); // /city/2000 라는 형태의 URL을 받는다는 뜻 ...
 	
 	
 	// data 를 조회하는 기능을 여기에 구현 
@@ -49,7 +49,7 @@ app.controller('modifyController', function($scope, $http, URL, $routeParams, $l
 	
 	$scope.submit = function(){
 		
-		var ajax =$http.put(URL.PUT_ITEM_MODIFY_BASE + $scope.city.id, {
+		var ajax =$http.put(URL.PUT_ITEM_MODIFY_BASE + $scope.city.id, { // 모든 정보는 URL 로 주고 받는다. 
 			
 			id 			: $scope.city.id , 
 			name 		: $scope.city.name , 
@@ -63,7 +63,7 @@ app.controller('modifyController', function($scope, $http, URL, $routeParams, $l
 		ajax.then(function(response) {
 			
 			console.dir(response); 
-			$location.path("/list"); 
+			$location.path("/list"); // list 로 장면 전환하기 위해 path 를 걸어줌 
 			
 		}, function(reason) {
 			

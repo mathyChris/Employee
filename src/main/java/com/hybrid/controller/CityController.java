@@ -75,7 +75,7 @@ public class CityController {
 	 * main.html
 	 * */
 	
-//	@RequestMapping("/city.html") // ==> main.thml  getView ==> getMainView 
+//	@RequestMapping("/city.html") // ==> main.html  getView ==> getMainView 
 	@RequestMapping(value="/main.html", method = RequestMethod.GET)
 	public String getMainView(){
 

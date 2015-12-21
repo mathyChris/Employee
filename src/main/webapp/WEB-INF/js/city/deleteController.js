@@ -17,7 +17,7 @@
  	});
 
 
-//	2. detailController 설정 부분 	
+//	2. deleteController 설정 부분 	
 app.controller('deleteController', function($scope, $http, URL, $routeParams){ // $http는 Ajax를 사용하기 위한 것 
 	
 	console.log("deleteController..."); 
