@@ -112,6 +112,8 @@ public class CityCommand {
 	}
 	
 	
+	
+	
 	public int getId() {
 		return Id;
 	}

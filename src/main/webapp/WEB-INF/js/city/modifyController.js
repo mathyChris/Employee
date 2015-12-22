@@ -49,7 +49,7 @@ app.controller('modifyController', function($scope, $http, URL, $routeParams, $l
 	
 	$scope.submit = function(){
 		
-		var ajax =$http.put(URL.PUT_ITEM_MODIFY_BASE + $scope.city.id, { // 모든 정보는 URL 로 주고 받는다. 
+		var ajax =$http.put(URL.PUT_ITEM_MODIFY_BASE + $scope.city.id, { // 모든 정보는  URL 로 주고 받는다. put method 사용  
 			
 			id 			: $scope.city.id , 
 			name 		: $scope.city.name , 

@@ -35,7 +35,7 @@ app.controller('appendController', function($scope, $http, $location, URL){ // $
 	
 	$scope.submit = function(){
 	
-		var ajax = $http.post(URL.POST_ITEM_APPEND, {
+		var ajax = $http.post(URL.POST_ITEM_APPEND, { // post method ==> insert 
 			
 			name : $scope.city.name , 
 			district : $scope.city.district , 

@@ -167,7 +167,8 @@
 							   value="확인"
 							   class="btn btn-primary" 
 			
-							   data-ng-disabled="cityForm.$invalid"/> 
+									data-ng-disabled="cityForm.$invalid"/>
+							    
 							   
 					<div>  cityForm.$invalid = {{cityForm.$invalid}} </div>
 					
