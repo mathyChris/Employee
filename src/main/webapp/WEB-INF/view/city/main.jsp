@@ -112,7 +112,7 @@
 		
 		console.log("mainController...");
 		
-//		$location.path("/list") ; //  automatic, adding '#/list' to URL in 'URL window', 위의 app.config를 붙이면 생략 가능 
+//		$location.path("/list") ; //  automatically, adding '#/list' to URL in 'URL window', 위의 app.config를 붙이면 생략 가능 
 		// http://localhost:8080/Employee/city/main.html#/list
 		
 		
@@ -127,6 +127,18 @@
 			$scope.StaticOrFixed = str; 
 			
 		}; 
+		
+		
+		// login 상태 확인 , ajax 생성 
+		var ajax = $http.get("/Employee/user/logincheck");
+		
+		ajax.then(function(value) {
+			
+			$scope.loginstatus = value.data ; 
+			
+		}); 
+		
+		
 	
 	});
 ////////////////////////////////////////////////////////	
@@ -158,7 +170,10 @@
 <body data-ng-controller="mainController" class="container">
 
  
+    <pre>{{loginstatus}}</pre>
 	<h1> {{title}} </h1>
+	
+
 	
 	<div data-ng-view> <!--  -->
 	

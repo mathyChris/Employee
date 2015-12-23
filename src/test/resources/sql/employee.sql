@@ -75,7 +75,7 @@ select *from member;
 
 
 
-create sequence member_id_seq -- autoincrement 의 기능 
+create sequence member_id_seq ; -- autoincrement 의 기능 
 
 
 -- create 에 해당 
@@ -85,7 +85,7 @@ create sequence member_id_seq -- autoincrement 의 기능
 insert into member
 (id, email, name, password, register_date)
 values
-(member_id_seq.nextval, xxxx@xxxx, Hong, 1234, 2015/11/09)
+(member_id_seq.nextval,'maphys@hanmail', 'Chris', '1234', '2015/12/23')
 
 
 

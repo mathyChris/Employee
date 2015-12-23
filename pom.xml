@@ -103,6 +103,12 @@
 	</dependency>
 	
 	<dependency>
+	  <groupId>org.springframework</groupId> 
+	  <artifactId>spring-websocket</artifactId> 
+	  <version>4.2.2.RELEASE</version> 
+	 </dependency>
+	
+	<dependency>
 		<groupId>commons-dbcp</groupId>
 		<artifactId>commons-dbcp</artifactId>
 		<version>1.4</version>

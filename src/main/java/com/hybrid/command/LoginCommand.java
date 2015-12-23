@@ -1,6 +1,7 @@
 package com.hybrid.command;
 
 public class LoginCommand {
+	
 	private String email;
 	private String password;
 	

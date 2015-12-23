@@ -19,8 +19,12 @@ public class MemberDao {
 		
 		return null;
 	}
+	
+	//
 	public Member selectByEmailAndPassword(String email, String password) {
+		
 		Map<String, Object> emailAndPassword = new HashMap<String, Object>();
+		
 		emailAndPassword.put("email", email);
 		emailAndPassword.put("password", password);
 		
