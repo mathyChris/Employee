@@ -18,7 +18,7 @@
 <title>login.jsp</title>
 
 
-<!-- urld을 처리하는 부분   -->
+<!-- url 을 처리하는 부분   -->
 <c:url var="LOGIN_URL" value="/user/login"/>
 <c:url var="REDIRECT_URL" value="/city/main.html"/> <!-- 성공 시 main으로 이동 -->
 
@@ -45,6 +45,43 @@
 	app.controller('mainController', function($scope, $http) {
 		
 		console.log("mainController...");
+		
+/*		
+ 		// 1. login.jsp, 여기에서  만든 ajax 를 이용, loginstatus 값을 따로 받아 처리한다.   
+        // 그러나 여기에서는 ajax 를 따로 사용한다는 점 때문에 좋은 형식은 아닌 듯 하다... 따라서 2번 방법인 $watch 를 사용한다. 
+		var ajax = $http.get("<c:url value="/user/logincheck" />");
+		ajax.then(function(value) {
+			
+			var loginstatus = value.data.login ; 
+			
+			if(loginstatus == true){
+				
+				location.href = "/Employee/user/logout" ;
+				
+			}
+			
+		}); 
+		
+*/
+		 
+		 
+		 // 2. angular 의 모니터링 기능 == $watch , $watch 는 여기서 loginstatus의 값을 모니터링 하는 역활을 수행한다.  
+		 $scope.$watch("loginstatus", function(){ // navController 에서 loginstatus 값을 여기로 넘긴다. 
+			 
+// 			alert("$watch...loginstatus");
+			console.log("$watch...loginstatus"); 
+			
+			
+			// login 화면으로 와서 login 상태를 check 한 후 logout 하도록 하는 logic 
+			if($scope.loginstatus == true) {
+// 				location.href= "/Employee/user/logout"; // 아래와 같이 <c tag 사용 
+				location.href= '<c:url value="/user/logout" />'; 
+			} 
+		 
+		 }) ;
+		 
+		 
+// 		alert("login = " + loginstatus); 
 		
 		$scope.login={}; 
 		
@@ -90,7 +127,7 @@
 </head>
 
 <body data-ng-controller="mainController" class="container">
-
+		{{loginstatus}}
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-default">

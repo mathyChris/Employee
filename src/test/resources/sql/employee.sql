@@ -385,7 +385,10 @@ create table country (
   code2 			char(2)  ,
   
   constraint pk_country_code primary key (code)
-)   	 		
+)   
+
+
+select *from country  ;
        	 		
 
 --  name 				char(52) not null default '',

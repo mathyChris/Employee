@@ -15,12 +15,36 @@
 
 <sitemesh:write property='head'/>
 
+
+
 <c:url var="menu_sider" value="/css/menu_sider.css"/>
 <c:url var="menu_sider_js" value="/js/menu_sider.js"/>
 
     
 <link rel="stylesheet" href="${menu_sider}">
-<script type="text/javascript" src="${menu_sider_js}"></script>    
+<script type="text/javascript" src="${menu_sider_js}"></script>  
+
+
+<!-- navController로 옮긴다. parent nav(navigator)는 mainController 이다.  -->
+<script type="text/javascript">
+	
+	app.controller("navController", function($scope, $http){
+		
+		//logincheck... LoginController에서 가져온다.
+		
+		var ajax = $http.get("<c:url value="/user/logincheck" />");
+		ajax.then(function(value) {
+			
+			
+			cpnsole.log("value of login = " + value.data.login); 
+			$scope.$parent.loginstatus = value.data.login ; //navController의 parent는 mainController에 해당한다.
+			// login 의 status 상태, true or false 는 browser console에서 확인하면 login 의 값으로 넘어어오기 때문에 value.data.login
+			
+		}); 
+		
+	}); 
+
+</script> 
     
     
 </head>
@@ -32,8 +56,8 @@
 	
    <div id="wrapper">
 
-       <!-- Navigation -->
-       <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+       <!-- Navigation : 최상위 테그 , root 에 해당-->
+       <nav data-ng-controller="navController" class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
            <div class="navbar-header">
                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                    <span class="sr-only">Toggle navigation</span>
@@ -237,7 +261,9 @@
                </li>
                <!-- /.dropdown -->
                
-               <c:url var="user_logout" value="/user/logout"/>
+               
+               
+<%--                <c:url var="user_logout" value="/user/logout"/> --%>
                <li class="dropdown">
                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                        <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
@@ -248,7 +274,8 @@
                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                        </li>
                        <li class="divider"></li>
-                       <li><a href="${user_logout}"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                          <li data-ng-hide="loginstatus">{{loginstatus}}<a href=" <c:url value="/user/login.html"/>"><i class="fa fa-sign-out fa-fw"></i> Login</a>
+                          <li data-ng-show="loginstatus">{{loginstatus}}<a href=" <c:url value="/user/logout"/>"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                        </li>
                    </ul>
                    <!-- /.dropdown-user -->
@@ -275,19 +302,21 @@
                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                        </li>
                        <li>
-                           <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
+                           <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> World<span class="fa arrow"></span></a>
                            <ul class="nav nav-second-level">
                                <li>
-                                   <a href="flot.html">Flot Charts</a>
+<!--                                    <a href="view/city/main.jsp">City</a> -->
+								   <a href="<c:url value="/city/main.html" />">City</a>
                                </li>
                                <li>
-                                   <a href="morris.html">Morris.js Charts</a>
+<!--                                    <a href="view/country/main.jsp">Country</a> -->
+								   <a href="<c:url value="/country/main.html" />">Country</a>
                                </li>
                            </ul>
                            <!-- /.nav-second-level -->
                        </li>
                        <li>
-                           <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
+                           <a href="#"> <i class="fa fa-table fa-fw"></i> Tables</a>
                        </li>
                        <li>
                            <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Forms</a>
@@ -372,7 +401,7 @@
        
            <div class="container-fluid">
            
-             <sitemesh:write property='body'/>
+             <sitemesh:write property='body'/> 
  
    
            </div>
@@ -382,13 +411,6 @@
 
    </div>
     <!-- /#wrapper -->	
-
-
-
-
-  
-
-  
 
 </body>
 

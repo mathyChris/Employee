@@ -71,7 +71,7 @@
 	
 	
 	
-	// in default webpage, 디폴트 페이지로 /list 를 붙여 보여줌 , 상단 내비 바를 눌러도 화면 loading되게 함....
+	// in default webpage, 디폴트 페이지로 /list를 붙여 보여줌 , 상단 내비 바를 눌러도 화면 loading되게 함....
 	app.config(function($routeProvider) {
 		
 		
@@ -129,14 +129,13 @@
 		}; 
 		
 		
-		// login 상태 확인 , ajax 생성 
-		var ajax = $http.get("/Employee/user/logincheck");
-		
-		ajax.then(function(value) {
+		// login 상태 확인 , ajax 생성 ==> 이 부분을 menu_sider.jsp의 navController 로 옮긴다. 
+// 		var ajax = $http.get("/Employee/user/logincheck");
+// 		ajax.then(function(value) {
 			
-			$scope.loginstatus = value.data ; 
+// 			$scope.loginstatus = value.data ; 
 			
-		}); 
+// 		}); 
 		
 		
 	
@@ -175,7 +174,7 @@
 	
 
 	
-	<div data-ng-view> <!--  -->
+	<div data-ng-view> <!-- body 부분이 보이는 부분  -->
 	
 	
 	</div>
