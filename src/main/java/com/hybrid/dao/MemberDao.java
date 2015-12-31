@@ -12,7 +12,9 @@ public class MemberDao {
 	MemberMapper memberMapper;
 	
 	public void setMemberMapper(MemberMapper mapper) {
+		
 		this.memberMapper = mapper;
+
 	}
 	
 	public List<Member> selectAll() {
@@ -31,12 +33,34 @@ public class MemberDao {
 		return memberMapper.selectByEmailAndPassword(emailAndPassword);
 	}
 	
-	public void insert(Member m) {
+	public void insert(Member m){
+		
+		
+		
 	}
 	
 	public void update(Member m) {
+		
+		
+		
 	}
 	
 	public void delete(Member m) {
+		
+		
+		
 	}
+
 }
+
+
+
+
+
+
+
+
+
+
+
+

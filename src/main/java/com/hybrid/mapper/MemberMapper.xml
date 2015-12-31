@@ -2,7 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.hybrid.mapper.MemberMapper">
 	
-    <select id="selectAll" resultType="com.hybrid.model.Member">
+    <select id="selectAll" 
+            resultType="com.hybrid.model.Member">
+            
          select id, 
         		email,
         		name,
@@ -12,26 +14,47 @@
         
     </select>
     
-     <select id="selectByEmailAndPassword" 
-             parameterType="hashmap" 
-             resultType="com.hybrid.model.Member">
-             
-     select id, 
-	        email, 
-	        name, 
-	        password, 
-	        register_date 
-     	 from member 
-     where email = #{email} and password = #{password}
-     
-     </select> 
+    <select id="selectByEmailAndPassword" 
+            parameterType="hashmap" 
+            resultType="com.hybrid.model.Member">
+            
+		    select  id, 
+			        email, 
+			        name, 
+			        password, 
+			        register_date 
+		       from member 
+		      where email = #{email} and password = #{password}
+    
+    </select> 
     
     
-    <insert id="insert">
-        insert into 
-        			(email, name, password)
-        	   values
-        			('xxx@yyyy', 'Chris', 1234)    
+    <insert id="insert"
+        	parameterType="com.hybrid.model.Member" 
+        	
+        	useGeneratedKeys="true"
+        	keyProperty="id"
+        	databaseId="mysql"> 
+        
+        insert into member 
+						(
+							email ,
+							name ,  
+							password , 
+							register_date 
+						)
+						
+				   values
+						(
+						
+							#{email, jdbcType = VARCHAR}, 
+							#{name, jdbcType = VARCHAR}, 
+							#{password, jdbcType = VARCHAR}, 
+							#{register_date , jdbcType = DATETIME}
+
+						) 
+        
+        			
     </insert>
     
     <update id="update">
